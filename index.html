@@ -24,7 +24,14 @@
   <!-- Container bao quát toàn bộ trang chủ Desktop -->
   <div class="relative min-h-screen font-sans overflow-x-hidden transition-colors duration-300" style="background-color: var(--bg-page); color: var(--text-dark);">
 
-    <!-- 1. TOP NAVBAR (NGEFLY SIGNATURE) -->
+    <!-- 
+      ==============================================================================
+      SEMANTIC BLOCK: <header>
+      Vai trò: Khối tiêu đề đầu trang (Banner / Masthead), chứa logo thương hiệu,
+      thanh điều hướng chính (<nav>), ô tìm kiếm nhanh, nút đổi chủ đề và nút xác thực.
+      Header được cố định với hiệu ứng trong suốt (glassmorphism) cho giao diện hiện đại.
+      ==============================================================================
+    -->
     <header class="ngefly-header header-transparent-home">
       <div class="container mx-auto max-w-[1220px]">
         <div class="navbar-inner">
@@ -36,6 +43,15 @@
             </span>
             <span class="logo-brand">Sky<span class="logo-accent">Wings</span></span>
           </a>
+
+          <!-- 
+            ==========================================================================
+            SEMANTIC BLOCK: <nav>
+            Vai trò: Khối điều hướng liên kết chính của toàn bộ website (Primary Navigation),
+            giúp người dùng di chuyển giữa các trang: Trang Chủ, Chuyến Bay, Lịch Trình,
+            Đặt Chỗ, Vé Của Bạn và Khu Vực Quản Trị.
+            ==========================================================================
+          -->
           <nav aria-label="Điều hướng chính">
             <ul class="nav-links">
               <li class="nav-item"><a href="index.html" class="active">Trang Chủ</a></li>
@@ -61,12 +77,30 @@
       </div>
     </header>
 
-    <!-- 2. HERO SECTION & THREE.JS CANVAS (EXTENDED FULL BANNER) -->
-    <section class="relative w-full h-[880px] flex flex-col items-center justify-between pt-24 pb-8 overflow-hidden">
-      <!-- Canvas 3D bối cảnh sân bay ban ngày bao phủ toàn bộ banner -->
-      <div id="webgl-container" class="absolute inset-0 z-0 overflow-hidden">
-        <canvas id="webgl-canvas" class="w-full h-full block" aria-label="Đường băng sân bay 3D SkyWings"></canvas>
-        <!-- Lớp gradient chuyển tiếp mượt mà ở đáy banner hòa vào phần thân web -->
+    <!-- 
+      ==============================================================================
+      SEMANTIC BLOCK: <main>
+      Vai trò: Khối nội dung chính (Main Content) độc nhất của trang chủ SkyWings.
+      Chứa toàn bộ các phân vùng nghiệp vụ cốt lõi theo chuẩn HTML5:
+        - Section 1: Hero Banner & Tìm kiếm chuyến bay thời gian thực + 3D Runway
+        - Section 2: Chặng Bay Nổi Bật & Bảng giá vé ưu đãi (Featured Deals)
+        - Section 3: Lý do lựa chọn SkyWings & Dịch vụ công nghệ hàng không
+      ==============================================================================
+    -->
+    <main class="relative z-10">
+
+      <!-- 
+        ============================================================================
+        SEMANTIC BLOCK: <section> #1 - HERO BANNER & BỘ TÌM KIẾM CHUYẾN BAY TƯƠNG TÁC
+        Vai trò: Điểm chạm thị giác đầu tiên (Above-the-fold), tích hợp mô hình sân bay 3D
+        bằng Three.js và Form tìm kiếm chuyến bay 1 hàng ngang (One-row search engine).
+        ============================================================================
+      -->
+      <section class="relative w-full h-[880px] flex flex-col items-center justify-between pt-24 pb-8 overflow-hidden" aria-label="Khung tìm kiếm vé máy bay và trải nghiệm phi trường 3D">
+        <!-- Canvas 3D bối cảnh sân bay ban ngày bao phủ toàn bộ banner -->
+        <div id="webgl-container" class="absolute inset-0 z-0 overflow-hidden">
+          <canvas id="webgl-canvas" class="w-full h-full block" aria-label="Đường băng sân bay 3D SkyWings"></canvas>
+          <!-- Lớp gradient chuyển tiếp mượt mà ở đáy banner hòa vào phần thân web -->
         <div class="hero-bottom-fade absolute inset-x-0 bottom-0 h-44 pointer-events-none" style="background: linear-gradient(to bottom, transparent 0%, var(--bg-page) 100%);"></div>
       </div>
 
@@ -171,74 +205,90 @@
       </div>
     </section>
 
-    <!-- ==================== CHẶNG BAY NỔI BẬT & ƯU ĐÃI ==================== -->
-    <main class="max-w-6xl mx-auto px-6 mb-16 pt-2 main-sheet-elevated">
-    <div class="scroll-reveal" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
-      <div>
-        <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px;">Chặng Bay Nổi Bật</h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.35rem;">Ưu đãi giá tốt nhất cho các điểm đến được yêu thích</p>
-      </div>
-      <a href="pages/flights.html" style="display:inline-flex; align-items:center; gap:0.4rem; color: var(--accent-orange); font-weight: 700; border: 1.5px solid var(--accent-orange); padding: 0.45rem 1.1rem; border-radius: 999px; font-size: 0.875rem; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--accent-orange)';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='var(--accent-orange)';">Xem Tất Cả ➔</a>
-    </div>
+      <!-- Container giới hạn độ rộng cho các nội dung phân tích & dịch vụ phía dưới -->
+      <div class="max-w-6xl mx-auto px-6 mb-16 pt-2 main-sheet-elevated">
 
-    <div class="scroll-reveal-stagger" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-      
-      <!-- Deal 1 -->
-      <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="SGN" data-to="HAN">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; gap: 0.65rem;">
-            <img src="assets/images/airlines/vietnam-airlines.svg" alt="Vietnam Airlines" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
-            <span style="font-weight: 800; font-size: 1.15rem;">SGN ➔ HAN</span>
+        <!-- 
+          ==========================================================================
+          SEMANTIC BLOCK: <section> #2 - CHẶNG BAY NỔI BẬT & BẢNG GIÁ ƯU ĐÃI
+          Vai trò: Trình bày danh sách các chuyến bay nội địa và quốc tế nổi bật,
+          giá ưu đãi cùng thông tin các hãng hàng không hợp tác chiến lược.
+          ==========================================================================
+        -->
+        <section class="popular-deals-section" aria-labelledby="deals-heading">
+          <div class="scroll-reveal" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+            <div>
+              <h2 id="deals-heading" style="font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px;">Chặng Bay Nổi Bật</h2>
+              <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.35rem;">Ưu đãi giá tốt nhất cho các điểm đến được yêu thích</p>
+            </div>
+            <a href="pages/flights.html" style="display:inline-flex; align-items:center; gap:0.4rem; color: var(--accent-orange); font-weight: 700; border: 1.5px solid var(--accent-orange); padding: 0.45rem 1.1rem; border-radius: 999px; font-size: 0.875rem; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--accent-orange)';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='var(--accent-orange)';">Xem Tất Cả ➔</a>
           </div>
-          <span class="deal-price-pill">Từ $140</span>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Vietnam Airlines • Hơn 40 chuyến/ngày</p>
-        <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
-      </div>
 
-      <!-- Deal 2 -->
-      <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="SGN" data-to="PQC">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; gap: 0.65rem;">
-            <img src="assets/images/airlines/vietjet-air.svg" alt="Vietjet Air" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
-            <span style="font-weight: 800; font-size: 1.15rem;">SGN ➔ PQC</span>
+          <div class="scroll-reveal-stagger" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+            
+            <!-- Deal 1 -->
+            <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="SGN" data-to="HAN">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                  <img src="assets/images/airlines/vietnam-airlines.svg" alt="Vietnam Airlines" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
+                  <span style="font-weight: 800; font-size: 1.15rem;">SGN ➔ HAN</span>
+                </div>
+                <span class="deal-price-pill">Từ $140</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Vietnam Airlines • Hơn 40 chuyến/ngày</p>
+              <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
+            </div>
+
+            <!-- Deal 2 -->
+            <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="SGN" data-to="PQC">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                  <img src="assets/images/airlines/vietjet-air.svg" alt="Vietjet Air" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
+                  <span style="font-weight: 800; font-size: 1.15rem;">SGN ➔ PQC</span>
+                </div>
+                <span class="deal-price-pill">Từ $75</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Vietjet Air • Bay thẳng 1h 05m</p>
+              <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
+            </div>
+
+            <!-- Deal 3 -->
+            <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="SGN" data-to="DAD">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                  <img src="assets/images/airlines/skywings.svg" alt="SkyWings" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
+                  <span style="font-weight: 800; font-size: 1.15rem;">SGN ➔ DAD</span>
+                </div>
+                <span class="deal-price-pill">Từ $85</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">SkyWings Express • Bay thẳng 1h 20m</p>
+              <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
+            </div>
+
+            <!-- Deal 4 -->
+            <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="HAN" data-to="PQC">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                  <img src="assets/images/airlines/bamboo-airways.svg" alt="Bamboo Airways" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
+                  <span style="font-weight: 800; font-size: 1.15rem;">HAN ➔ PQC</span>
+                </div>
+                <span class="deal-price-pill">Từ $160</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Bamboo Airways • Bay thẳng 2h 10m</p>
+              <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
+            </div>
+
           </div>
-          <span class="deal-price-pill">Từ $75</span>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Vietjet Air • Bay thẳng 1h 05m</p>
-        <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
-      </div>
+        </section>
 
-      <!-- Deal 3 -->
-      <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="SGN" data-to="DAD">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; gap: 0.65rem;">
-            <img src="assets/images/airlines/skywings.svg" alt="SkyWings" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
-            <span style="font-weight: 800; font-size: 1.15rem;">SGN ➔ DAD</span>
-          </div>
-          <span class="deal-price-pill">Từ $85</span>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">SkyWings Express • Bay thẳng 1h 20m</p>
-        <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
-      </div>
-
-      <!-- Deal 4 -->
-      <div class="white-panel-card deal-card" style="padding: 1.5rem; cursor: pointer;" data-from="HAN" data-to="PQC">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <div style="display: flex; align-items: center; gap: 0.65rem;">
-            <img src="assets/images/airlines/bamboo-airways.svg" alt="Bamboo Airways" style="width: 32px; height: 32px; border-radius: 50%; box-shadow: var(--shadow-xs);">
-            <span style="font-weight: 800; font-size: 1.15rem;">HAN ➔ PQC</span>
-          </div>
-          <span class="deal-price-pill">Từ $160</span>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Bamboo Airways • Bay thẳng 2h 10m</p>
-        <button type="button" class="btn-view-details" style="width: 100%;">Đặt Vé Ngay</button>
-      </div>
-
-    </div>
-
-    <!-- ==================== TÍNH NĂNG NỔI BẬT NGEFLY TRAVEL TECH ==================== -->
-    <section class="ngefly-why-choose scroll-reveal" style="margin-top: 4.5rem;">
+        <!-- 
+          ==========================================================================
+          SEMANTIC BLOCK: <section> #3 - TÍNH NĂNG CÔNG NGHỆ & ĐỘ TIN CẬY
+          Vai trò: Trình bày các giá trị cốt lõi khẳng định chất lượng và sự bảo mật của dịch vụ
+          (3D tương tác, tìm kiếm siêu tốc, chứng chỉ bảo mật PCI-DSS, Boarding Pass số).
+          ==========================================================================
+        -->
+        <section class="ngefly-why-choose scroll-reveal" style="margin-top: 4.5rem;" aria-labelledby="why-choose-heading">
       <div style="text-align: center; margin-bottom: 2.5rem;">
         <span style="color: var(--accent-orange); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.2px; background: rgba(255,107,0,0.08); padding: 0.35rem 0.9rem; border-radius: 20px;">Dịch Vụ Đẳng Cấp</span>
         <h2 style="font-size: 1.85rem; font-weight: 900; margin-top: 0.75rem; letter-spacing: -0.5px;">Tại Sao Lựa Chọn SkyWings?</h2>
@@ -271,10 +321,21 @@
         </div>
       </div>
     </section>
-  </main>
+  </div>
+</main>
 
-  <!-- ==================== CHÂN TRANG CAO CẤP (AVIATION LUXURY FOOTER) ==================== -->
-  <footer class="ngefly-footer">
+    <!-- 
+      ==============================================================================
+      SEMANTIC BLOCK: <footer>
+      Vai trò: Khối chân trang (Footer), chứa toàn bộ thông tin hỗ trợ và kết thúc website:
+        - Đăng ký nhận bản tin khuyến mãi (Newsletter subscription)
+        - Thông tin liên hệ, hotline tổng đài hỗ trợ 24/7 và mạng xã hội
+        - Danh mục liên kết phụ (Hành trình, chính sách, thành viên VIP, quản trị)
+        - Chứng chỉ bảo mật (IATA, PCI-DSS Level 1, SSL) & Cổng thanh toán
+        - Quyền sở hữu trí tuệ (Copyright) và nút cuộn nhanh lên đầu trang
+      ==============================================================================
+    -->
+    <footer class="ngefly-footer">
     <!-- Top Newsletter Subscription Card -->
     <div class="footer-newsletter-section">
       <div class="container">
