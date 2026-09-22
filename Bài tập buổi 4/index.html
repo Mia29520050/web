@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập Buổi 4 - Hoạt động thực hành tại lớp</title>
+    <style>
+        /* ==========================================================================
+           HĐ 1 & HĐ 4: BẢNG MÃ MÀU THÔNG MINH & DESIGN SYSTEM REFACTORING
+           - Định nghĩa CSS Variables tại :root cho primary, secondary, 3 mức xám và nền
+           - Trích xuất toàn bộ mã màu và khoảng cách có hệ thống
+           ========================================================================== */
+        :root {
+            /* Palette Màu */
+            --color-primary: #2563eb;          /* Primary Blue */
+            --color-primary-hover: #1d4ed8;    /* Darker Blue */
+            --color-primary-light: #eff6ff;    /* Light Blue Tint */
+            --color-primary-subtle: #dbeafe;   /* Subtle Blue */
+            
+            --color-secondary: #4f46e5;        /* Indigo Accent */
+            --color-secondary-light: #eef2ff;  /* Soft Indigo */
+            --color-secondary-border: #c7d2fe; /* Indigo Border */
+
+            /* 3 Mức Xám */
+            --color-gray-dark: #1f2937;        /* Xám đậm (văn bản chính, tiêu đề) */
+            --color-gray-medium: #6b7280;      /* Xám trung bình (muted text, phụ đề) */
+            --color-gray-light: #e5e7eb;       /* Xám nhạt (đường viền, separator) */
+
+            /* Nền & Bề mặt */
+            --color-bg: #f5f7fb;               /* Nền trang */
+            --color-surface: #ffffff;          /* Nền thẻ / card surface */
+            --color-surface-subtle: #fafafa;   /* Nền sub-card / project item */
+            --color-header-bg: #111827;        /* Nền header / sidebar tối */
+            --color-header-text: #ffffff;      /* Chữ sáng màu */
+
+            /* Design System: Spacing Tokens (Khoảng cách) */
+            --spacing-unit: 8px;
+            --space-1: var(--spacing-unit);                    /* 8px */
+            --space-2: calc(var(--spacing-unit) * 2);          /* 16px */
+            --space-3: calc(var(--spacing-unit) * 3);          /* 24px */
+            --space-4: calc(var(--spacing-unit) * 4);          /* 32px */
+            --space-5: calc(var(--spacing-unit) * 5);          /* 40px */
+
+            /* Bo góc & Đổ bóng */
+            --radius-sm: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-pill: 9999px;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset cơ bản */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-gray-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Banner bài tập Buổi 4 */
+        .session-banner {
+            background: linear-gradient(135deg, var(--color-header-bg), #1e293b);
+            color: var(--color-header-text);
+            padding: var(--space-4) var(--space-3);
+            text-align: center;
+            border-bottom: 4px solid var(--color-primary);
+        }
+
+        .session-banner h1 {
+            font-size: 1.75rem;
+            margin-bottom: var(--space-1);
+        }
+
+        .session-banner p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-1);
+            margin-top: var(--space-2);
+        }
+
+        .nav-tab-link {
+            display: inline-block;
+            padding: var(--space-1) var(--space-2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #e5e7eb;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            transition: background 0.2s ease;
+        }
+
+        .nav-tab-link:hover {
+            background: var(--color-primary);
+            color: #ffffff;
+        }
+
+        /* Hoạt động Indicator Badge */
+        .hd-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        /* ==========================================================================
+           HĐ 2: RESPONSIVE PORTFOLIO
+           - Desktop: Bố cục 2 cột (Sidebar 250px + Main 1fr)
+           - Mobile (<768px): Biến bố cục 2 cột thành 1 cột
+           ========================================================================== */
+        .portfolio-wrapper {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+        }
+
+        .portfolio-header {
+            grid-area: header;
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .portfolio-header .brand h2 {
+            color: var(--color-primary);
+            font-size: 1.4rem;
+        }
+
+        .portfolio-header .brand p {
+            color: var(--color-gray-medium);
+            font-size: 0.9rem;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            padding: var(--space-4);
+            background: var(--color-header-bg);
+            color: var(--color-header-text);
+        }
+
+        .sidebar h3 {
+            font-size: 1rem;
+            margin-bottom: var(--space-2);
+            text-transform: uppercase;
+            color: #9ca3af;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar nav {
+            display: grid;
+            gap: var(--space-1);
+        }
+
+        .sidebar a {
+            padding: var(--space-1) var(--space-2);
+            color: #d1d5db;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .portfolio-main {
+            grid-area: main;
+            padding: var(--space-4);
+        }
+
+        /* Thẻ nội dung (Cards) */
+        .card {
+            margin-bottom: var(--space-4);
+            padding: var(--space-4);
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: var(--space-2);
+            color: var(--color-gray-dark);
+            border-bottom: 2px solid var(--color-primary-light);
+            padding-bottom: var(--space-1);
+        }
+
+        /* Flexbox Demo Căn giữa (Buổi 3 - HĐ 1) */
+        .flex-demo {
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary-subtle), #e0e7ff);
+            border-radius: var(--radius-xl);
+            margin: var(--space-2) 0;
+        }
+
+        .flex-box {
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 1px solid var(--color-gray-light);
+        }
+
+        .flex-box h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        /* Skills Flexbox (Buổi 3 - HĐ 2) */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+        }
+
+        .skill {
+            padding: var(--space-1) var(--space-2);
+            background: var(--color-secondary-light);
+            border: 1px solid var(--color-secondary-border);
+            color: var(--color-secondary);
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Grid (Buổi 3 - HĐ 2) */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .project {
+            padding: var(--space-3);
+            background: var(--color-surface-subtle);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+        }
+
+        .project h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        /* ==========================================================================
+           HĐ 3: BREAKPOINT CHALLENGE - KHU VỰC "DỊCH VỤ"
+           - Desktop (>1024px): 4 cột
+           - Tablet (768px - 1024px): 2 cột
+           - Mobile (<768px): 1 cột
+           ========================================================================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Mặc định 4 cột trên Desktop */
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .service-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-2);
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            color: var(--color-gray-dark);
+            margin-bottom: var(--space-1);
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--color-gray-medium);
+        }
+
+        /* Debug & Refactor Checklist (Buổi 3 - HĐ 3) */
+        .checks {
+            display: grid;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .check {
+            padding: var(--space-2);
+            border-left: 4px solid var(--color-primary);
+            background: var(--color-primary-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            margin-top: var(--space-2);
+            padding: var(--space-2);
+            background: var(--color-header-bg);
+            color: #e5e7eb;
+            border-radius: var(--radius-sm);
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 0.88rem;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        /* Footer */
+        .portfolio-footer {
+            grid-area: footer;
+            padding: var(--space-3);
+            text-align: center;
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-gray-light);
+            color: var(--color-gray-medium);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           HĐ 2 & HĐ 3: MEDIA QUERIES & BREAKPOINTS
+           - Tablet breakpoint: max-width: 1024px (Dịch vụ -> 2 cột)
+           - Mobile breakpoint: max-width: 767px (Bố cục -> 1 cột, Dịch vụ -> 1 cột)
+           ========================================================================== */
+
+        /* Tablet Breakpoint (<= 1024px) */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 cột Tablet */
+            }
+        }
+
+        /* Mobile Breakpoint (< 768px) */
+        @media (max-width: 767px) {
+            /* HĐ 2: Chuyển bố cục 2 cột Desktop thành 1 cột trên Mobile <768px */
+            .portfolio-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .portfolio-main {
+                padding: var(--space-2);
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            /* HĐ 3: Khu vực Dịch vụ 1 cột trên Mobile */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flex-demo {
+                height: 180px;
+            }
+
+            .flex-box {
+                padding: var(--space-2);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header điều hướng nhanh của bài thực hành Buổi 4 -->
+    <header class="session-banner">
+        <h1>BÀI TẬP BUỔI 4: DESIGN SYSTEM & RESPONSIVE DESIGN</h1>
+        <p>Tích hợp toàn bộ hoạt động Buổi 3 & Hoàn thiện 4 hoạt động thực hành lớp Buổi 4</p>
+        <div class="nav-tabs">
+            <a href="#about" class="nav-tab-link">Giới thiệu</a>
+            <a href="#hd1-palette" class="nav-tab-link">HĐ 1: Bảng màu CSS :root</a>
+            <a href="#services" class="nav-tab-link">HĐ 3: Breakpoint Dịch vụ</a>
+            <a href="#portfolio-content" class="nav-tab-link">HĐ 2: Responsive Portfolio</a>
+            <a href="#b3-flex-grid" class="nav-tab-link">B3: Flex & Grid Battle</a>
+            <a href="#b3-refactor" class="nav-tab-link">HĐ 4 & B3: Refactoring</a>
+        </div>
+    </header>
+
+    <!-- Bố cục Portfolio chính (HĐ 2: Desktop 2 cột -> Mobile <768px 1 cột) -->
+    <div class="portfolio-wrapper">
+
+        <!-- Header Portfolio -->
+        <header class="portfolio-header">
+            <div class="brand">
+                <h2>Hồ Sơ Năng Lực (Portfolio)</h2>
+                <p>Thực hành Responsive Web Design & Design System Tokens</p>
+            </div>
+            <div>
+                <span class="hd-tag">HĐ 1 & 2 & 3 & 4</span>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h3>Menu Điều Hướng</h3>
+            <nav>
+                <a href="#about">1. Giới thiệu</a>
+                <a href="#hd1-palette">2. Bảng mã màu (:root)</a>
+                <a href="#services">3. Dịch vụ (Breakpoint)</a>
+                <a href="#skills">4. Kỹ năng (Flexbox)</a>
+                <a href="#projects">5. Dự án (CSS Grid)</a>
+                <a href="#b3-flex-grid">6. Flex & Grid Battle</a>
+                <a href="#b3-refactor">7. Refactoring System</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="portfolio-main">
+
+            <!-- Section 1: Giới thiệu -->
+            <section class="card" id="about">
+                <span class="hd-tag">Tổng quan</span>
+                <h2>Giới thiệu cá nhân</h2>
+                <p>
+                    Chào mừng bạn đến với trang Portfolio thực hành Buổi 4. Trang web đã được refactor toàn bộ
+                    hệ thống biến CSS (Design Tokens) tại <code>:root</code>, áp dụng bố cục Responsive với CSS Grid
+                    và Flexbox tương thích hoàn hảo từ màn hình máy tính bàn (Desktop), máy tính bảng (Tablet)
+                    đến điện thoại di động (Mobile &lt; 768px).
+                </p>
+            </section>
+
+            <!-- Section 2: HĐ 1 — Bảng mã màu thông minh (:root) -->
+            <section class="card" id="hd1-palette">
+                <span class="hd-tag">HĐ 1 — 30 phút</span>
+                <h2>Bảng mã màu thông minh (CSS Variables tại :root)</h2>
+                <p>Định nghĩa các biến màu chính, màu phụ, 3 mức xám và màu nền, áp dụng trực tiếp xuyên suốt trang:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px;">
+                    <div style="background: var(--color-primary); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>Primary</strong><br><small>#2563eb</small>
+                    </div>
+                    <div style="background: var(--color-secondary); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>Secondary</strong><br><small>#4f46e5</small>
+                    </div>
+                    <div style="background: var(--color-gray-dark); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>Gray Dark</strong><br><small>#1f2937</small>
+                    </div>
+                    <div style="background: var(--color-gray-medium); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                        <strong>Gray Medium</strong><br><small>#6b7280</small>
+                    </div>
+                    <div style="background: var(--color-gray-light); color: var(--color-gray-dark); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #cbd5e1;">
+                        <strong>Gray Light</strong><br><small>#e5e7eb</small>
+                    </div>
+                    <div style="background: var(--color-bg); color: var(--color-gray-dark); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #cbd5e1;">
+                        <strong>Background</strong><br><small>#f5f7fb</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: HĐ 3 — Breakpoint Challenge: Khu vực "Dịch vụ" -->
+            <section class="card" id="services">
+                <span class="hd-tag">HĐ 3 — 30 phút</span>
+                <h2>Breakpoint Challenge: Khu vực "Dịch vụ"</h2>
+                <p>
+                    Quy tắc bố cục: <strong>4 cột trên Desktop</strong> (&gt;1024px) → <strong>2 cột trên Tablet</strong> (768px – 1024px) → <strong>1 cột trên Mobile</strong> (&lt;768px) sử dụng <em>CSS Grid</em> kết hợp <em>Media Queries</em>.
+                </p>
+
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon">💻</div>
+                        <h3>Thiết kế Web</h3>
+                        <p>Xây dựng giao diện web chuẩn UX/UI, hiện đại và tối ưu trải nghiệm người dùng.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>Responsive Design</h3>
+                        <p>Tương thích mượt mà trên mọi thiết bị: Desktop, Laptop, iPad, Smartphone.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Tối ưu Tốc độ</h3>
+                        <p>Refactor mã CSS tinh giản, loại bỏ thuộc tính dư thừa, tải trang cực nhanh.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Design Systems</h3>
+                        <p>Xây dựng hệ thống biến màu, khoảng cách chuẩn hóa, dễ dàng bảo trì và mở rộng.</p>
+                    </article>
+                </div>
+
+                <div class="code-block">
+<pre>/* Code Breakpoint Challenge */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cột Desktop */
+    gap: var(--space-3);
+}
+@media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); /* 2 cột Tablet */ }
+}
+@media (max-width: 767px) {
+    .services-grid { grid-template-columns: 1fr; /* 1 cột Mobile */ }
+}</pre>
+                </div>
+            </section>
+
+            <!-- Section 4: Kỹ năng (Từ Buổi 3 - HĐ 2) -->
+            <section class="card" id="skills">
+                <span class="hd-tag">Buổi 3 - HĐ 2</span>
+                <h2>Kỹ năng (Skills Flexbox Wrap)</h2>
+                <p>Sử dụng Flexbox wrap tự động xuống dòng linh hoạt:</p>
+                <div class="skills">
+                    <div class="skill">HTML5 Semantic</div>
+                    <div class="skill">CSS3 Variables (:root)</div>
+                    <div class="skill">CSS Grid Layout</div>
+                    <div class="skill">Flexbox Alignment</div>
+                    <div class="skill">Responsive Media Queries</div>
+                    <div class="skill">Design System Refactoring</div>
+                    <div class="skill">Git & GitHub</div>
+                </div>
+            </section>
+
+            <!-- Section 5: Dự án (Từ Buổi 3 - HĐ 2) -->
+            <section class="card" id="projects">
+                <span class="hd-tag">Buổi 3 - HĐ 2</span>
+                <h2>Dự án tiêu biểu</h2>
+                <div class="projects">
+                    <article class="project">
+                        <h3>Flex & Grid Battle</h3>
+                        <p>Thực hành chuyên sâu về Flexbox và CSS Grid layout từ buổi 3.</p>
+                    </article>
+                    <article class="project">
+                        <h3>Responsive Portfolio Website</h3>
+                        <p>Bố cục chuyển đổi mượt mà từ 2 cột Desktop sang 1 cột Mobile &lt;768px.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Section 6: Tích hợp Buổi 3 - HĐ 1 (Flex & Grid Battle) -->
+            <section class="card" id="b3-flex-grid">
+                <span class="hd-tag">Buổi 3 - HĐ 1</span>
+                <h2>Flex & Grid Battle: Kỹ thuật căn chỉnh</h2>
+                
+                <h3 style="font-size: 1.1rem; margin-top: 12px;">1. Flexbox - Căn giữa toàn phần</h3>
+                <p>Căn giữa phần tử theo cả hai trục ngang và dọc bằng display flex:</p>
+                <div class="flex-demo">
+                    <div class="flex-box">
+                        <h3>Căn giữa hoàn hảo</h3>
+                        <p>display: flex | justify-content: center | align-items: center</p>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.1rem; margin-top: 20px;">2. CSS Grid - 3 cột bằng nhau</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-2); margin-top: 12px;">
+                    <div style="background: var(--color-gray-light); padding: var(--space-3); border-radius: var(--radius-sm); text-align: center; font-weight: bold;">Cột 1</div>
+                    <div style="background: var(--color-gray-light); padding: var(--space-3); border-radius: var(--radius-sm); text-align: center; font-weight: bold;">Cột 2</div>
+                    <div style="background: var(--color-gray-light); padding: var(--space-3); border-radius: var(--radius-sm); text-align: center; font-weight: bold;">Cột 3</div>
+                </div>
+            </section>
+
+            <!-- Section 7: HĐ 4 & Buổi 3 - HĐ 3 (Design System Refactoring & Debug) -->
+            <section class="card" id="b3-refactor">
+                <span class="hd-tag">HĐ 4 — 30 phút & Buổi 3 - HĐ 3</span>
+                <h2>Design System Refactoring: Trích xuất biến CSS & Debug</h2>
+                <p>Chuyển đổi toàn bộ các mã màu và khoảng cách "cứng" (hard-coded) thành biến CSS tại <code>:root</code>:</p>
+
+                <div class="checks">
+                    <div class="check">
+                        <strong>Trích xuất mã màu:</strong> Thay thế các mã màu #2563eb, #111827, #f5f7fb bằng <code>var(--color-primary)</code>, <code>var(--color-header-bg)</code>, <code>var(--color-bg)</code>.
+                    </div>
+                    <div class="check">
+                        <strong>Trích xuất khoảng cách:</strong> Chuẩn hóa các giá trị padding, margin thành token <code>--space-1</code> (8px), <code>--space-2</code> (16px), <code>--space-3</code> (24px), <code>--space-4</code> (32px), <code>--space-5</code> (40px).
+                    </div>
+                    <div class="check">
+                        <strong>Tối ưu hóa mã nguồn:</strong> Sử dụng Shorthand Properties (margin, padding), loại bỏ thuộc tính CSS trùng lặp hoặc dư thừa.
+                    </div>
+                    <div class="check">
+                        <strong>Kiểm thử Responsive:</strong> Mở DevTools (F12) &gt; Toggle Device Toolbar (Ctrl + Shift + M) để kiểm tra layout ở kích thước &lt;768px (Mobile) và 768px–1024px (Tablet).
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre>:root {
+    /* Color Tokens */
+    --color-primary: #2563eb;
+    --color-secondary: #4f46e5;
+    --color-gray-dark: #1f2937;
+    --color-gray-medium: #6b7280;
+    --color-gray-light: #e5e7eb;
+    --color-bg: #f5f7fb;
+
+    /* Spacing Tokens */
+    --spacing-unit: 8px;
+    --space-1: var(--spacing-unit);           /* 8px */
+    --space-2: calc(var(--spacing-unit) * 2); /* 16px */
+    --space-3: calc(var(--spacing-unit) * 3); /* 24px */
+    --space-4: calc(var(--spacing-unit) * 4); /* 32px */
+}</pre>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="portfolio-footer">
+            <p>Bài tập Buổi 4 — Tích hợp & Refactor Design System | CSS Grid & Flexbox Responsive Portfolio</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
