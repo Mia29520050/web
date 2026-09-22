@@ -567,6 +567,372 @@
                 padding: var(--space-2);
             }
         }
+
+        /* ==========================================================================
+           CSS TÍCH HỢP TRỰC TIẾP CHO 6 BÀI TẬP VỀ NHÀ VÀO INDEX BUỔI 4
+           ========================================================================== */
+        
+        /* Bài 1: Responsive Typography Scale demo */
+        .typography-scale-demo {
+            --scale-h1: 2.5rem;
+            --scale-h2: 2rem;
+            --scale-h3: 1.5rem;
+            --scale-h4: 1.25rem;
+            --scale-body: 1.125rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            margin-top: var(--space-2);
+        }
+
+        .typography-scale-demo h1 {
+            font-size: var(--scale-h1);
+            line-height: 1.2;
+            color: var(--color-gray-dark);
+            margin-bottom: var(--space-1);
+        }
+        .typography-scale-demo h2 {
+            font-size: var(--scale-h2);
+            line-height: 1.25;
+            color: var(--color-primary);
+            margin: var(--space-2) 0 var(--space-1) 0;
+            border: none;
+            padding: 0;
+        }
+        .typography-scale-demo h3 {
+            font-size: var(--scale-h3);
+            color: var(--color-gray-dark);
+            margin: var(--space-1) 0;
+        }
+        .typography-scale-demo h4 {
+            font-size: var(--scale-h4);
+            color: var(--color-gray-medium);
+            margin: var(--space-1) 0;
+        }
+        .typography-scale-demo p {
+            font-size: var(--scale-body);
+            color: var(--color-gray-medium);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .typography-scale-demo {
+                --scale-h1: 1.875rem; /* 30px */
+                --scale-h2: 1.5rem;   /* 24px */
+                --scale-h3: 1.25rem;  /* 20px */
+                --scale-h4: 1.125rem; /* 18px */
+                --scale-body: 1rem;   /* 16px */
+            }
+        }
+
+        /* Bài 2: Adaptive Card Layout demo */
+        .hw-adaptive-card {
+            display: flex;
+            flex-direction: row; /* Desktop: Ảnh trái - chữ phải */
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: var(--space-2);
+        }
+
+        .hw-card-img {
+            flex: 1 1 42%;
+            min-height: 250px;
+        }
+
+        .hw-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hw-card-body {
+            flex: 1 1 58%;
+            padding: var(--space-3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hw-card-btn {
+            align-self: flex-start;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 600;
+            min-height: 48px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: var(--space-2);
+            transition: opacity 0.2s;
+        }
+
+        @media (max-width: 767px) {
+            .hw-adaptive-card {
+                flex-direction: column; /* Mobile: Ảnh trên - chữ dưới */
+            }
+            .hw-card-img {
+                min-height: 200px;
+                max-height: 240px;
+            }
+            .hw-card-btn {
+                width: 100%;
+            }
+        }
+
+        /* Bài 3: Smart Navigation Bar demo */
+        .hw-navbar-demo {
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-2);
+            overflow: hidden;
+        }
+
+        .hw-nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px var(--space-3);
+        }
+
+        .hw-nav-brand {
+            font-weight: 800;
+            color: var(--color-primary);
+            font-size: 1.15rem;
+        }
+
+        .hw-desktop-menu {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .hw-nav-item {
+            text-decoration: none;
+            color: var(--color-gray-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .hw-nav-item:hover {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+
+        .hw-hamburger-btn {
+            display: none; /* Desktop ẩn */
+            background: none;
+            border: 1px solid var(--color-gray-light);
+            border-radius: 6px;
+            cursor: pointer;
+            min-width: 44px;
+            min-height: 44px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            padding: 6px;
+        }
+
+        .hw-hamburger-bar {
+            width: 20px;
+            height: 2px;
+            background: var(--color-gray-dark);
+        }
+
+        .hw-mobile-dropdown {
+            display: none;
+            list-style: none;
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-gray-light);
+            padding: 10px var(--space-2);
+        }
+
+        .hw-mobile-dropdown.active {
+            display: block;
+        }
+
+        .hw-mobile-dropdown li {
+            margin-bottom: 6px;
+        }
+
+        .hw-mobile-dropdown a {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: var(--color-gray-dark);
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 767px) {
+            .hw-desktop-menu {
+                display: none; /* Mobile: Ẩn menu ngang */
+            }
+            .hw-hamburger-btn {
+                display: flex; /* Mobile: Hiện nút Hamburger */
+            }
+        }
+
+        /* Bài 4: Theme Card Demo */
+        .hw-theme-box {
+            --hw-theme-bg: #f8fafc;
+            --hw-theme-surface: #ffffff;
+            --hw-theme-text: #0f172a;
+            --hw-theme-border: #e2e8f0;
+            --hw-theme-accent: #2563eb;
+            background: var(--hw-theme-bg);
+            border: 1px solid var(--hw-theme-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            margin-top: var(--space-2);
+            transition: all 0.3s ease;
+        }
+
+        .hw-theme-box.dark-mode-active {
+            --hw-theme-bg: #0b0f19;
+            --hw-theme-surface: #1e293b;
+            --hw-theme-text: #f8fafc;
+            --hw-theme-border: #334155;
+            --hw-theme-accent: #38bdf8;
+        }
+
+        .hw-theme-inner {
+            background: var(--hw-theme-surface);
+            border: 1px solid var(--hw-theme-border);
+            border-radius: var(--radius-sm);
+            padding: var(--space-3);
+            color: var(--hw-theme-text);
+            transition: all 0.3s ease;
+        }
+
+        /* Bài 5: Responsive Image Gallery Demo */
+        .hw-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .hw-gallery-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hw-gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hw-gallery-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hw-gallery-card p {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-gray-dark);
+            margin: 0;
+        }
+
+        /* Bài 6: Mobile-First Contact Form Demo */
+        .hw-contact-form {
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            margin-top: var(--space-2);
+            width: 100%; /* Mặc định Mobile 100% */
+        }
+
+        .hw-form-grid {
+            display: flex;
+            flex-direction: column; /* Mobile 1 cột */
+            gap: var(--space-2);
+        }
+
+        .hw-form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hw-form-field label {
+            font-size: 0.88rem;
+            font-weight: bold;
+            color: var(--color-gray-dark);
+        }
+
+        .hw-form-field input,
+        .hw-form-field textarea {
+            width: 100%;
+            min-height: 48px;
+            padding: 10px 14px;
+            font-size: 1rem;
+            border: 1.5px solid var(--color-gray-light);
+            border-radius: var(--radius-sm);
+            background: var(--color-bg);
+            color: var(--color-gray-dark);
+            outline: none;
+        }
+
+        .hw-form-field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .hw-form-submit {
+            width: 100%;
+            min-height: 48px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: var(--space-1);
+        }
+
+        @media (min-width: 768px) {
+            /* Desktop form căn giữa và giới hạn độ rộng */
+            .hw-contact-form {
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
+                padding: var(--space-4);
+            }
+            .hw-form-grid-row {
+                display: flex;
+                flex-direction: row;
+                gap: var(--space-2);
+            }
+            .hw-form-grid-row .hw-form-field {
+                flex: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -790,105 +1156,176 @@
                 </div>
             </section>
 
-            <!-- Section MỚI: BÀI TẬP VỀ NHÀ — 6 BÀI TỰ RÈN LUYỆN (GỘP VÀO 1 MỤC TRUNG TÂM) -->
-            <section class="card" id="homework-section" style="border: 2px solid #f43f5e; box-shadow: 0 4px 16px rgba(244, 63, 94, 0.1);">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                    <span class="hd-tag" style="background: #ffe4e6; color: #e11d48; font-weight: 800;">⭐ BÀI TẬP VỀ NHÀ — TUẦN 4</span>
-                    <a href="ai_prompts.md" target="_blank" style="text-decoration: none; background: #e11d48; color: white; padding: 4px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold;">📄 Xem file ai_prompts.md</a>
+            <!-- Section: TÍCH HỢP TRỰC TIẾP TOÀN BỘ 6 BÀI TẬP VỀ NHÀ VÀO TRANG BUỔI 4 -->
+            <section class="card" id="homework-section" style="border: 2px solid #f43f5e; box-shadow: 0 6px 20px rgba(244, 63, 94, 0.12);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #ffe4e6; padding-bottom: 12px; margin-bottom: 16px;">
+                    <div>
+                        <span class="hd-tag" style="background: #ffe4e6; color: #e11d48; font-weight: 800;">⭐ BÀI TẬP VỀ NHÀ — TUẦN 4</span>
+                        <h2 style="color: #e11d48; margin-top: 6px; border: none; padding: 0;">6 Bài Tự Rèn Luyện (Tích Hợp Trực Tiếp Vào Giao Diện)</h2>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="ai_prompts.md" target="_blank" style="text-decoration: none; background: #e11d48; color: white; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; display: inline-flex; align-items: center; gap: 6px;">
+                            📄 Nhật ký ai_prompts.md
+                        </a>
+                    </div>
                 </div>
-                
-                <h2 style="color: #e11d48; margin-top: 10px;">6 Bài Tự Rèn Luyện (Hub Tổng Hợp)</h2>
-                <p>
-                    Tất cả 6 bài tập về nhà đã được lập trình hoàn thiện theo chuẩn Responsive, CSS Variables tại <code>:root</code>, có đầy đủ thẻ viewport, không cuộn ngang và tối ưu cảm ứng. Bạn có thể mở trực tiếp từng bài bên dưới:
+
+                <p style="margin-bottom: 20px;">
+                    Dưới đây là khu vực tích hợp chạy trực tiếp toàn bộ 6 bài tập về nhà ngay trên trang chủ Buổi 4:
                 </p>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
-                    
-                    <!-- Bài 1 -->
-                    <div style="background: var(--color-bg); border: 1px solid var(--color-gray-light); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: bold; color: var(--color-primary); text-transform: uppercase;">Bài 1</div>
-                            <h3 style="font-size: 1.1rem; margin: 4px 0 8px 0; color: var(--color-gray-dark);">Responsive Typography Scale</h3>
-                            <p style="font-size: 0.88rem; color: var(--color-gray-medium); line-height: 1.5;">
-                                Hệ thống cỡ chữ h1–p hoàn toàn với CSS Variables tại :root, tự động giảm kích thước tỷ lệ khi màn hình &lt;600px.
-                            </p>
-                        </div>
-                        <a href="Exercise-01/index.html" target="_blank" style="display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--color-primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center;">
-                            🚀 Mở Bài 1 (Exercise-01) →
-                        </a>
+                <!-- ================= BÀI 1 TRỰC TIẾP ================= -->
+                <div style="background: var(--color-surface); border: 1px solid var(--color-gray-light); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                    <span class="hd-tag">Bài 1 — Responsive Typography Scale</span>
+                    <h3 style="margin-top: 4px; color: var(--color-gray-dark);">Hệ thống cỡ chữ h1–p với CSS Variables (Tự giảm khi &lt; 600px)</h3>
+                    <p style="font-size: 0.9rem; color: var(--color-gray-medium); margin-bottom: 10px;">
+                        Khai báo các biến <code>--scale-h1</code> đến <code>--scale-body</code>. Khi màn hình co dưới 600px, toàn bộ thang chữ tự giảm tỉ lệ nhưng vẫn đảm bảo font chữ thẻ p tối thiểu 16px.
+                    </p>
+                    <div class="typography-scale-demo">
+                        <h1>H1 Tiêu đề chính lớn (Responsive)</h1>
+                        <h2>H2 Tiêu đề mục cấp 2</h2>
+                        <h3>H3 Phân đoạn nội dung cấp 3</h3>
+                        <h4>H4 Chú thích nhãn phụ cấp 4</h4>
+                        <p>Văn bản đoạn văn (p): Đảm bảo font-size tối thiểu 16px trên mobile, line-height 1.6 giúp mắt người dùng đọc dễ dàng mà không cần phải zoom màn hình.</p>
                     </div>
-
-                    <!-- Bài 2 -->
-                    <div style="background: var(--color-bg); border: 1px solid var(--color-gray-light); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: bold; color: var(--color-primary); text-transform: uppercase;">Bài 2</div>
-                            <h3 style="font-size: 1.1rem; margin: 4px 0 8px 0; color: var(--color-gray-dark);">Adaptive Card Layout</h3>
-                            <p style="font-size: 0.88rem; color: var(--color-gray-medium); line-height: 1.5;">
-                                Ảnh trái – chữ phải (Desktop) và ảnh trên – chữ dưới (Mobile &lt;768px) dùng Flexbox flex-direction.
-                            </p>
-                        </div>
-                        <a href="Exercise-02/index.html" target="_blank" style="display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--color-primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center;">
-                            🚀 Mở Bài 2 (Exercise-02) →
-                        </a>
-                    </div>
-
-                    <!-- Bài 3 -->
-                    <div style="background: var(--color-bg); border: 1px solid var(--color-gray-light); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: bold; color: var(--color-primary); text-transform: uppercase;">Bài 3</div>
-                            <h3 style="font-size: 1.1rem; margin: 4px 0 8px 0; color: var(--color-gray-dark);">Smart Navigation Bar</h3>
-                            <p style="font-size: 0.88rem; color: var(--color-gray-medium); line-height: 1.5;">
-                                Menu ngang đầy đủ trên Desktop, tự động ẩn và hiển thị Hamburger icon trên Mobile bằng display: none.
-                            </p>
-                        </div>
-                        <a href="Exercise-03/index.html" target="_blank" style="display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--color-primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center;">
-                            🚀 Mở Bài 3 (Exercise-03) →
-                        </a>
-                    </div>
-
-                    <!-- Bài 4 -->
-                    <div style="background: var(--color-bg); border: 1px solid var(--color-gray-light); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: bold; color: var(--color-primary); text-transform: uppercase;">Bài 4</div>
-                            <h3 style="font-size: 1.1rem; margin: 4px 0 8px 0; color: var(--color-gray-dark);">Dark/Light Mode Theme</h3>
-                            <p style="font-size: 0.88rem; color: var(--color-gray-medium); line-height: 1.5;">
-                                2 bộ biến màu, class .dark-theme ghi đè biến, chuyển đổi màu êm ái với transition: 0.3s ease.
-                            </p>
-                        </div>
-                        <a href="Exercise-04/index.html" target="_blank" style="display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--color-primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center;">
-                            🚀 Mở Bài 4 (Exercise-04) →
-                        </a>
-                    </div>
-
-                    <!-- Bài 5 -->
-                    <div style="background: var(--color-bg); border: 1px solid var(--color-gray-light); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: bold; color: var(--color-primary); text-transform: uppercase;">Bài 5</div>
-                            <h3 style="font-size: 1.1rem; margin: 4px 0 8px 0; color: var(--color-gray-dark);">Responsive Image Gallery</h3>
-                            <p style="font-size: 0.88rem; color: var(--color-gray-medium); line-height: 1.5;">
-                                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) tự co giãn số lượng cột theo độ rộng cửa sổ.
-                            </p>
-                        </div>
-                        <a href="Exercise-05/index.html" target="_blank" style="display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--color-primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center;">
-                            🚀 Mở Bài 5 (Exercise-05) →
-                        </a>
-                    </div>
-
-                    <!-- Bài 6 -->
-                    <div style="background: var(--color-bg); border: 1px solid var(--color-gray-light); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <div style="font-size: 0.75rem; font-weight: bold; color: var(--color-primary); text-transform: uppercase;">Bài 6</div>
-                            <h3 style="font-size: 1.1rem; margin: 4px 0 8px 0; color: var(--color-gray-dark);">Mobile-First Contact Form</h3>
-                            <p style="font-size: 0.88rem; color: var(--color-gray-medium); line-height: 1.5;">
-                                Mặc định ô nhập 100% trên Mobile, form giới hạn max-width 620px và căn giữa tuyệt đẹp trên Desktop.
-                            </p>
-                        </div>
-                        <a href="Exercise-06/index.html" target="_blank" style="display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--color-primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: bold; text-align: center;">
-                            🚀 Mở Bài 6 (Exercise-06) →
-                        </a>
-                    </div>
-
                 </div>
+
+                <!-- ================= BÀI 2 TRỰC TIẾP ================= -->
+                <div style="background: var(--color-surface); border: 1px solid var(--color-gray-light); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                    <span class="hd-tag">Bài 2 — Adaptive Card Layout</span>
+                    <h3 style="margin-top: 4px; color: var(--color-gray-dark);">Ảnh trái–chữ phải (Desktop) và Ảnh trên–chữ dưới (Mobile)</h3>
+                    <p style="font-size: 0.9rem; color: var(--color-gray-medium); margin-bottom: 10px;">
+                        Sử dụng <code>display: flex; flex-direction: row</code> trên Desktop và tự chuyển <code>flex-direction: column</code> trên Mobile (&lt; 768px).
+                    </p>
+                    
+                    <article class="hw-adaptive-card">
+                        <div class="hw-card-img">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80" alt="Workspace demo">
+                        </div>
+                        <div class="hw-card-body">
+                            <span class="hd-tag" style="align-self: flex-start; margin-bottom: 8px;">Flexbox Adaptive</span>
+                            <h3 style="font-size: 1.25rem; color: var(--color-gray-dark); margin-bottom: 8px;">Thiết Kế Web Thích Ứng Mọi Màn Hình</h3>
+                            <p style="color: var(--color-gray-medium); font-size: 0.95rem; line-height: 1.5;">
+                                Layout tự động chuyển trục linh hoạt, ảnh dùng object-fit: cover chống méo hình và nút bấm đạt chuẩn touch target tối thiểu 48px.
+                            </p>
+                            <button type="button" class="hw-card-btn" onclick="alert('Đã nhấn nút Adaptive Card!')">Khám Phá Chi Tiết</button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- ================= BÀI 3 TRỰC TIẾP ================= -->
+                <div style="background: var(--color-surface); border: 1px solid var(--color-gray-light); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                    <span class="hd-tag">Bài 3 — Smart Navigation Bar</span>
+                    <h3 style="margin-top: 4px; color: var(--color-gray-dark);">Menu đầy đủ trên Desktop, Hamburger icon trên Mobile</h3>
+                    <p style="font-size: 0.9rem; color: var(--color-gray-medium); margin-bottom: 10px;">
+                        Ứng dụng <code>display: none</code> / <code>display: flex</code> linh hoạt giữa các mốc màn hình. Bấm vào icon 3 gạch để kiểm tra dropdown menu.
+                    </p>
+                    
+                    <div class="hw-navbar-demo">
+                        <div class="hw-nav-inner">
+                            <div class="hw-nav-brand">⚡ SmartNav Mini</div>
+                            <ul class="hw-desktop-menu">
+                                <li><a href="#about" class="hw-nav-item">Giới thiệu</a></li>
+                                <li><a href="#services" class="hw-nav-item">Dịch vụ</a></li>
+                                <li><a href="#skills" class="hw-nav-item">Kỹ năng</a></li>
+                                <li><a href="#homework-section" class="hw-nav-item" style="background: var(--color-primary); color: white;">Khám phá</a></li>
+                            </ul>
+                            <button type="button" class="hw-hamburger-btn" id="demoHwHamburger" aria-label="Toggle menu" onclick="document.getElementById('demoHwDropdown').classList.toggle('active')">
+                                <span class="hw-hamburger-bar"></span>
+                                <span class="hw-hamburger-bar"></span>
+                                <span class="hw-hamburger-bar"></span>
+                            </button>
+                        </div>
+                        <ul class="hw-mobile-dropdown" id="demoHwDropdown">
+                            <li><a href="#about">Giới thiệu</a></li>
+                            <li><a href="#services">Dịch vụ</a></li>
+                            <li><a href="#skills">Kỹ năng</a></li>
+                            <li><a href="#homework-section" style="background: var(--color-primary-light); color: var(--color-primary);">Khám phá</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ================= BÀI 4 TRỰC TIẾP ================= -->
+                <div style="background: var(--color-surface); border: 1px solid var(--color-gray-light); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                    <span class="hd-tag">Bài 4 — Dark/Light Mode Theme (Thành phần độc lập)</span>
+                    <h3 style="margin-top: 4px; color: var(--color-gray-dark);">2 bộ biến màu, class ghi đè biến, chuyển đổi mượt mà</h3>
+                    <p style="font-size: 0.9rem; color: var(--color-gray-medium); margin-bottom: 10px;">
+                        Kỹ thuật scoped theme: Thay đổi biến CSS bên trong hộp demo khi bấm nút chuyển đổi:
+                    </p>
+                    
+                    <div class="hw-theme-box" id="hwThemeBox">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <strong style="color: var(--hw-theme-text);">Preview Dark/Light Mode</strong>
+                            <button type="button" onclick="toggleHwBoxTheme()" style="background: var(--color-primary); color: white; border: none; padding: 8px 16px; border-radius: 999px; cursor: pointer; font-size: 0.85rem; font-weight: bold; min-height: 44px;">
+                                🌓 <span id="hwThemeBtnText">Bật Dark Mode</span>
+                            </button>
+                        </div>
+                        <div class="hw-theme-inner">
+                            <h4 style="margin-bottom: 6px;">Trải Nghiệm Đổi Giao Diện Mượt Mà</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0;">Toàn bộ màu nền, text, đường viền của hộp demo này tự động đồng bộ theo 2 bộ biến màu với transition 0.3s.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= BÀI 5 TRỰC TIẾP ================= -->
+                <div style="background: var(--color-surface); border: 1px solid var(--color-gray-light); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                    <span class="hd-tag">Bài 5 — Responsive Image Gallery</span>
+                    <h3 style="margin-top: 4px; color: var(--color-gray-dark);">CSS Grid tự co giãn: repeat(auto-fit, minmax(220px, 1fr))</h3>
+                    <p style="font-size: 0.9rem; color: var(--color-gray-medium); margin-bottom: 10px;">
+                        Không cần nhiều media queries, thư viện ảnh tự động co giãn cột dựa trên độ rộng màn hình thực tế.
+                    </p>
+                    
+                    <div class="hw-gallery-grid">
+                        <div class="hw-gallery-card">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="Thiên nhiên hồ nước">
+                            <p>Hồ Núi Thiên Nhiên</p>
+                        </div>
+                        <div class="hw-gallery-card">
+                            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=500&q=80" alt="Rừng sương mù">
+                            <p>Rừng Sương Mù</p>
+                        </div>
+                        <div class="hw-gallery-card">
+                            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=500&q=80" alt="Mùa thu lá vàng">
+                            <p>Mùa Thu Vàng</p>
+                        </div>
+                        <div class="hw-gallery-card">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=500&q=80" alt="Hoàng hôn">
+                            <p>Hoàng Hôn Cao Nguyên</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= BÀI 6 TRỰC TIẾP ================= -->
+                <div style="background: var(--color-surface); border: 1px solid var(--color-gray-light); border-radius: 12px; padding: 20px;">
+                    <span class="hd-tag">Bài 6 — Mobile-First Contact Form</span>
+                    <h3 style="margin-top: 4px; color: var(--color-gray-dark);">Ô nhập 100% trên Mobile, giới hạn width & căn giữa trên Desktop</h3>
+                    <p style="font-size: 0.9rem; color: var(--color-gray-medium); margin-bottom: 10px;">
+                        Thiết kế Mobile-First tối ưu cảm ứng, chiều cao ô nhập tối thiểu 48px, font chữ &ge; 16px tránh giật màn hình:
+                    </p>
+                    
+                    <div class="hw-contact-form">
+                        <form onsubmit="event.preventDefault(); alert('Cảm ơn! Form liên hệ Mobile-First hoạt động hoàn hảo.');">
+                            <div class="hw-form-grid">
+                                <div class="hw-form-grid-row">
+                                    <div class="hw-form-field">
+                                        <label for="hwName">Họ và tên *</label>
+                                        <input type="text" id="hwName" placeholder="Nguyễn Văn A" required>
+                                    </div>
+                                    <div class="hw-form-field">
+                                        <label for="hwEmail">Email *</label>
+                                        <input type="email" id="hwEmail" placeholder="email@domain.com" required>
+                                    </div>
+                                </div>
+                                <div class="hw-form-field">
+                                    <label for="hwMsg">Nội dung tin nhắn *</label>
+                                    <textarea id="hwMsg" placeholder="Nhập lời nhắn của bạn tại đây..." required></textarea>
+                                </div>
+                                <button type="submit" class="hw-form-submit">Gửi Tin Nhắn (Mobile-First Touch Target)</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </section>
 
             <!-- Section 5: Kỹ năng (Từ Buổi 3 - HĐ 2) -->
@@ -1083,6 +1520,20 @@
             const picker = document.getElementById(pickerId);
             if (picker) picker.value = val;
             updateCssVar(varName, val, hexId);
+        }
+
+        // Chuyển đổi Dark/Light mode cho thẻ Bài 4 trực tiếp trên trang
+        function toggleHwBoxTheme() {
+            const box = document.getElementById('hwThemeBox');
+            const txt = document.getElementById('hwThemeBtnText');
+            if (box) {
+                box.classList.toggle('dark-mode-active');
+                if (box.classList.contains('dark-mode-active')) {
+                    if (txt) txt.innerText = 'Bật Light Mode';
+                } else {
+                    if (txt) txt.innerText = 'Bật Dark Mode';
+                }
+            }
         }
     </script>
 </body>
