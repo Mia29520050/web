@@ -11,7 +11,7 @@
            - Trích xuất toàn bộ mã màu và khoảng cách có hệ thống
            ========================================================================== */
         :root {
-            /* Palette Màu */
+            /* Palette Màu Mặc Định (Có thể đổi trực tiếp qua bộ chọn màu) */
             --color-primary: #2563eb;          /* Primary Blue */
             --color-primary-hover: #1d4ed8;    /* Darker Blue */
             --color-primary-light: #eff6ff;    /* Light Blue Tint */
@@ -58,6 +58,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
         body {
@@ -125,9 +126,152 @@
             margin-bottom: var(--space-1);
         }
 
+        /* Bộ điều khiển bảng màu trực tiếp (Interactive Color Customizer) */
+        .color-customizer-panel {
+            background: var(--color-surface);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3);
+            margin-top: var(--space-3);
+            box-shadow: var(--shadow-md);
+        }
+
+        .customizer-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--space-1);
+            margin-bottom: var(--space-2);
+            border-bottom: 1px dashed var(--color-gray-light);
+            padding-bottom: var(--space-1);
+        }
+
+        .customizer-title h3 {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .theme-preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .preset-btn {
+            border: 1px solid var(--color-gray-light);
+            background: var(--color-surface);
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--color-primary);
+        }
+
+        .preset-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .color-inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .color-input-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .color-input-card label {
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--color-gray-dark);
+        }
+
+        .color-picker-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .color-input-card input[type="color"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 44px;
+            height: 38px;
+            border: 2px solid var(--color-gray-light);
+            border-radius: 8px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+
+        .color-input-card input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-input-card input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+
+        .color-hex-val {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--color-gray-medium);
+            font-weight: 600;
+        }
+
+        .color-role-hint {
+            font-size: 0.72rem;
+            color: var(--color-gray-medium);
+        }
+
+        .reset-color-btn {
+            margin-top: var(--space-2);
+            padding: 6px 16px;
+            background: var(--color-gray-light);
+            color: var(--color-gray-dark);
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .reset-color-btn:hover {
+            background: var(--color-gray-medium);
+            color: white;
+        }
+
         /* ==========================================================================
            HĐ 2: RESPONSIVE PORTFOLIO
-           - Desktop: Bố cục 2 cột (Sidebar 250px + Main 1fr)
+           - Desktop: Bố cục 2 cột (Sidebar 260px + Main 1fr)
            - Mobile (<768px): Biến bố cục 2 cột thành 1 cột
            ========================================================================== */
         .portfolio-wrapper {
@@ -484,30 +628,113 @@
                 </p>
             </section>
 
-            <!-- Section 2: HĐ 1 — Bảng mã màu thông minh (:root) -->
+            <!-- Section 2: HĐ 1 — Bảng mã màu thông minh (:root) + Công cụ đổi màu tương tác -->
             <section class="card" id="hd1-palette">
                 <span class="hd-tag">HĐ 1 — 30 phút</span>
                 <h2>Bảng mã màu thông minh (CSS Variables tại :root)</h2>
-                <p>Định nghĩa các biến màu chính, màu phụ, 3 mức xám và màu nền, áp dụng trực tiếp xuyên suốt trang:</p>
+                <p>Định nghĩa các biến màu chính, màu phụ, 3 mức xám và màu nền. <strong>Bạn có thể đổi màu trực tiếp ngay trên trang web</strong> qua bảng điều khiển bên dưới:</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px;">
-                    <div style="background: var(--color-primary); color: white; padding: 12px; border-radius: 8px; text-align: center;">
-                        <strong>Primary</strong><br><small>#2563eb</small>
+                <!-- Bảng tương tác đổi màu trực tiếp trên web -->
+                <div class="color-customizer-panel">
+                    <div class="customizer-title">
+                        <h3>🎨 Trình Chỉnh Sửa Mã Màu Trực Tiếp (Live Theme Editor)</h3>
+                        <div class="theme-preset-buttons">
+                            <button type="button" class="preset-btn" onclick="applyPreset('blue')">
+                                <span class="preset-dot" style="background: #2563eb;"></span> Ocean Blue (Mặc định)
+                            </button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('emerald')">
+                                <span class="preset-dot" style="background: #059669;"></span> Emerald Green
+                            </button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('purple')">
+                                <span class="preset-dot" style="background: #7c3aed;"></span> Royal Purple
+                            </button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('sunset')">
+                                <span class="preset-dot" style="background: #ea580c;"></span> Sunset Orange
+                            </button>
+                            <button type="button" class="preset-btn" onclick="applyPreset('dark')">
+                                <span class="preset-dot" style="background: #0f172a;"></span> Dark Mode
+                            </button>
+                        </div>
                     </div>
-                    <div style="background: var(--color-secondary); color: white; padding: 12px; border-radius: 8px; text-align: center;">
-                        <strong>Secondary</strong><br><small>#4f46e5</small>
+
+                    <p style="font-size: 0.88rem; color: var(--color-gray-medium); margin-bottom: 12px;">
+                        Chọn từng ô màu dưới đây để thay đổi trực tiếp biến CSS <code>:root</code> trong thời gian thực:
+                    </p>
+
+                    <div class="color-inputs-grid">
+                        <!-- Primary Color -->
+                        <div class="color-input-card">
+                            <label for="picker-primary">Primary (Màu chính)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-primary" value="#2563eb" oninput="updateCssVar('--color-primary', this.value, 'hex-primary')">
+                            </div>
+                            <span class="color-hex-val" id="hex-primary">#2563eb</span>
+                            <span class="color-role-hint">Nút, viền, điểm nhấn</span>
+                        </div>
+
+                        <!-- Secondary Color -->
+                        <div class="color-input-card">
+                            <label for="picker-secondary">Secondary (Màu phụ)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-secondary" value="#4f46e5" oninput="updateCssVar('--color-secondary', this.value, 'hex-secondary')">
+                            </div>
+                            <span class="color-hex-val" id="hex-secondary">#4f46e5</span>
+                            <span class="color-role-hint">Badge skills, phụ trợ</span>
+                        </div>
+
+                        <!-- Gray Dark -->
+                        <div class="color-input-card">
+                            <label for="picker-gray-dark">Gray Dark (Xám đậm)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-gray-dark" value="#1f2937" oninput="updateCssVar('--color-gray-dark', this.value, 'hex-gray-dark')">
+                            </div>
+                            <span class="color-hex-val" id="hex-gray-dark">#1f2937</span>
+                            <span class="color-role-hint">Tiêu đề, chữ chính</span>
+                        </div>
+
+                        <!-- Gray Medium -->
+                        <div class="color-input-card">
+                            <label for="picker-gray-medium">Gray Medium (Xám vừa)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-gray-medium" value="#6b7280" oninput="updateCssVar('--color-gray-medium', this.value, 'hex-gray-medium')">
+                            </div>
+                            <span class="color-hex-val" id="hex-gray-medium">#6b7280</span>
+                            <span class="color-role-hint">Chữ phụ, chú thích</span>
+                        </div>
+
+                        <!-- Gray Light -->
+                        <div class="color-input-card">
+                            <label for="picker-gray-light">Gray Light (Xám nhạt)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-gray-light" value="#e5e7eb" oninput="updateCssVar('--color-gray-light', this.value, 'hex-gray-light')">
+                            </div>
+                            <span class="color-hex-val" id="hex-gray-light">#e5e7eb</span>
+                            <span class="color-role-hint">Đường viền, phân cách</span>
+                        </div>
+
+                        <!-- Background Color -->
+                        <div class="color-input-card">
+                            <label for="picker-bg">Background (Nền)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-bg" value="#f5f7fb" oninput="updateCssVar('--color-bg', this.value, 'hex-bg')">
+                            </div>
+                            <span class="color-hex-val" id="hex-bg">#f5f7fb</span>
+                            <span class="color-role-hint">Màu nền trang web</span>
+                        </div>
+
+                        <!-- Surface Color -->
+                        <div class="color-input-card">
+                            <label for="picker-surface">Surface (Thẻ/Card)</label>
+                            <div class="color-picker-control">
+                                <input type="color" id="picker-surface" value="#ffffff" oninput="updateCssVar('--color-surface', this.value, 'hex-surface')">
+                            </div>
+                            <span class="color-hex-val" id="hex-surface">#ffffff</span>
+                            <span class="color-role-hint">Màu nền thẻ card</span>
+                        </div>
                     </div>
-                    <div style="background: var(--color-gray-dark); color: white; padding: 12px; border-radius: 8px; text-align: center;">
-                        <strong>Gray Dark</strong><br><small>#1f2937</small>
-                    </div>
-                    <div style="background: var(--color-gray-medium); color: white; padding: 12px; border-radius: 8px; text-align: center;">
-                        <strong>Gray Medium</strong><br><small>#6b7280</small>
-                    </div>
-                    <div style="background: var(--color-gray-light); color: var(--color-gray-dark); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #cbd5e1;">
-                        <strong>Gray Light</strong><br><small>#e5e7eb</small>
-                    </div>
-                    <div style="background: var(--color-bg); color: var(--color-gray-dark); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #cbd5e1;">
-                        <strong>Background</strong><br><small>#f5f7fb</small>
+
+                    <div style="text-align: right;">
+                        <button type="button" class="reset-color-btn" onclick="applyPreset('blue')">Khôi phục mặc định</button>
                     </div>
                 </div>
             </section>
@@ -666,5 +893,95 @@
 
     </div>
 
+    <!-- Script đổi biến CSS Variables trực tiếp trên Web -->
+    <script>
+        const root = document.documentElement;
+
+        function updateCssVar(varName, colorVal, hexDisplayId) {
+            root.style.setProperty(varName, colorVal);
+            if (hexDisplayId) {
+                const el = document.getElementById(hexDisplayId);
+                if (el) el.innerText = colorVal.toLowerCase();
+            }
+
+            // Đồng bộ màu bổ trợ tự động khi đổi primary
+            if (varName === '--color-primary') {
+                root.style.setProperty('--color-primary-light', colorVal + '1a'); // 10% opacity tint
+                root.style.setProperty('--color-primary-subtle', colorVal + '33'); // 20% opacity tint
+            }
+            // Đồng bộ màu bổ trợ tự động khi đổi secondary
+            if (varName === '--color-secondary') {
+                root.style.setProperty('--color-secondary-light', colorVal + '1a');
+                root.style.setProperty('--color-secondary-border', colorVal + '4d');
+            }
+        }
+
+        const presets = {
+            blue: {
+                primary: '#2563eb',
+                secondary: '#4f46e5',
+                grayDark: '#1f2937',
+                grayMedium: '#6b7280',
+                grayLight: '#e5e7eb',
+                bg: '#f5f7fb',
+                surface: '#ffffff'
+            },
+            emerald: {
+                primary: '#059669',
+                secondary: '#0d9488',
+                grayDark: '#132a13',
+                grayMedium: '#4b5563',
+                grayLight: '#d1fae5',
+                bg: '#f0fdf4',
+                surface: '#ffffff'
+            },
+            purple: {
+                primary: '#7c3aed',
+                secondary: '#c026d3',
+                grayDark: '#1e1b4b',
+                grayMedium: '#6b7280',
+                grayLight: '#ede9fe',
+                bg: '#faf5ff',
+                surface: '#ffffff'
+            },
+            sunset: {
+                primary: '#ea580c',
+                secondary: '#d97706',
+                grayDark: '#292524',
+                grayMedium: '#78716c',
+                grayLight: '#fed7aa',
+                bg: '#fff7ed',
+                surface: '#ffffff'
+            },
+            dark: {
+                primary: '#38bdf8',
+                secondary: '#818cf8',
+                grayDark: '#f3f4f6',
+                grayMedium: '#9ca3af',
+                grayLight: '#334155',
+                bg: '#0f172a',
+                surface: '#1e293b'
+            }
+        };
+
+        function applyPreset(presetKey) {
+            const p = presets[presetKey];
+            if (!p) return;
+
+            setControlValue('picker-primary', 'hex-primary', '--color-primary', p.primary);
+            setControlValue('picker-secondary', 'hex-secondary', '--color-secondary', p.secondary);
+            setControlValue('picker-gray-dark', 'hex-gray-dark', '--color-gray-dark', p.grayDark);
+            setControlValue('picker-gray-medium', 'hex-gray-medium', '--color-gray-medium', p.grayMedium);
+            setControlValue('picker-gray-light', 'hex-gray-light', '--color-gray-light', p.grayLight);
+            setControlValue('picker-bg', 'hex-bg', '--color-bg', p.bg);
+            setControlValue('picker-surface', 'hex-surface', '--color-surface', p.surface);
+        }
+
+        function setControlValue(pickerId, hexId, varName, val) {
+            const picker = document.getElementById(pickerId);
+            if (picker) picker.value = val;
+            updateCssVar(varName, val, hexId);
+        }
+    </script>
 </body>
 </html>
