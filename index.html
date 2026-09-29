@@ -827,6 +827,195 @@
                 flex: 1;
             }
         }
+        /* ==========================================================================
+           WEEK 5: ANIMATIONS & PERFORMANCE (6 BÀI TẬP VỀ NHÀ)
+           ========================================================================== */
+        
+        /* 1. Hamburger Menu to "X" (CSS Transition) */
+        .hamburger-btn.is-active .hamburger-bar:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+        .hamburger-btn.is-active .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-btn.is-active .hamburger-bar:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* 2. Floating Action Button (Pulse Animation) */
+        .fab-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+            transition: transform 0.3s cubic-bezier(.25,.46,.45,.94);
+        }
+        .fab-contact:hover {
+            transform: scale(1.1);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        /* Cập nhật màu pulse khi ở dark mode */
+        body.dark-theme .fab-contact {
+            animation: pulse-dark 2s infinite;
+        }
+        @keyframes pulse-dark {
+            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+
+        /* 3. Card Flip Effect (rotateY) */
+        .flip-card {
+            background-color: transparent;
+            width: 200px;
+            height: 280px;
+            perspective: 1000px;
+            margin: var(--space-3) auto;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        .flip-card-front {
+            background-color: var(--color-surface);
+            color: var(--color-gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .flip-card-back {
+            background-color: var(--color-primary);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-2);
+        }
+
+        /* 4. Typing Effect */
+        .typing-container {
+            display: inline-block;
+            max-width: 100%;
+        }
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--color-primary);
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--color-primary); }
+        }
+
+        /* 5. Parallax Image Banner */
+        .parallax-banner {
+            background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            overflow: hidden;
+            text-align: center;
+            padding: var(--space-3);
+        }
+        .parallax-banner h1 {
+            color: white;
+        }
+
+        /* 6. Skill Bar Animation */
+        .skill-list {
+            margin-top: var(--space-3);
+        }
+        .skill-item {
+            margin-bottom: var(--space-2);
+        }
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .skill-track {
+            background: var(--color-gray-light);
+            height: 10px;
+            border-radius: var(--radius-pill);
+            overflow: hidden;
+        }
+        .skill-fill {
+            height: 100%;
+            background: var(--color-primary);
+            width: 0; /* Bắt đầu từ 0 */
+            border-radius: var(--radius-pill);
+            /* Dùng transform scaleX mượt hơn thay vì width nếu tối ưu cực độ, 
+               nhưng width ở đây có thể chấp nhận được vì thanh này tĩnh và chạy 1 lần.
+               Hoặc ta dùng width + CSS transition. 
+               Ta sẽ dùng animation keyframe với thuộc tính width. */
+            animation: fillSkill 1.5s cubic-bezier(.25,.46,.45,.94) forwards;
+            animation-delay: 0.5s; /* Delay nhẹ để cuộn tới mới thấy */
+        }
+        @keyframes fillSkill {
+            to { width: var(--target-width); }
+        }
+
     </style>
     <!-- AOS CSS CDN -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -906,6 +1095,13 @@
         <!-- Nội dung chính -->
         <main class="portfolio-main">
 
+            <!-- Parallax Banner & Typing Effect (Bài tập Tuần 5) -->
+            <div class="parallax-banner" data-aos="fade-up">
+                <div class="typing-container">
+                    <div class="typing-text">Tôi là một Web Developer...</div>
+                </div>
+            </div>
+
             <!-- 1. BÀI 2 TÍCH HỢP: ADAPTIVE CARD LAYOUT LÀM MỤC GIỚI THIỆU -->
             <section class="card-section" data-aos="fade-up" id="about">
                 <span class="section-badge">Bài 2 — Adaptive Card Layout</span>
@@ -915,8 +1111,19 @@
                 </p>
 
                 <article class="adaptive-bio-card">
-                    <div class="adaptive-bio-img">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Workspace thiết kế giao diện web">
+                    <div class="adaptive-bio-img" data-aos="flip-left">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Workspace thiết kế giao diện web">
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3 style="margin-bottom:8px">Thông Tin Liên Hệ</h3>
+                                    <p style="font-size:0.9rem">Email: nhatduy@example.com</p>
+                                    <p style="font-size:0.9rem; margin-top:8px">"Hiệu suất là ưu tiên!"</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="adaptive-bio-content">
                         <span class="section-badge" style="align-self: flex-start; margin-bottom: 8px;">Sinh viên Lập trình Web & AI</span>
@@ -1026,17 +1233,33 @@
             <section class="card-section" data-aos="fade-up" id="skills">
                 <span class="section-badge">Buổi 3 — HĐ 2</span>
                 <h2>Kỹ năng lập trình (Flexbox Wrap)</h2>
-                <p style="color: var(--color-gray-medium);">Các thẻ kỹ năng tự động xuống dòng linh hoạt khi màn hình thu nhỏ:</p>
+                <p style="color: var(--color-gray-medium);">Các thanh kỹ năng tự động lấp đầy mượt mà (sử dụng <code>transform</code>/<code>width</code> animation chạy từ 0 đến đích khi cuộn trang tới):</p>
                 
-                <div class="skills-wrap">
-                    <span class="skill-badge">HTML5 Semantic</span>
-                    <span class="skill-badge">CSS Variables (:root)</span>
-                    <span class="skill-badge">Dark / Light Mode Theme</span>
-                    <span class="skill-badge">CSS Grid Layout</span>
-                    <span class="skill-badge">Flexbox Alignment</span>
-                    <span class="skill-badge">Responsive Media Queries</span>
-                    <span class="skill-badge">Mobile-First Form Design</span>
-                    <span class="skill-badge">Git & GitHub</span>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>HTML5 / Semantic UI</span><span>95%</span></div>
+                        <div class="skill-track">
+                            <div class="skill-fill" style="--target-width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>CSS Variables / Grid / Flexbox</span><span>90%</span></div>
+                        <div class="skill-track">
+                            <div class="skill-fill" style="--target-width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>CSS Animations & Performance</span><span>85%</span></div>
+                        <div class="skill-track">
+                            <div class="skill-fill" style="--target-width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Responsive Web Design</span><span>95%</span></div>
+                        <div class="skill-track">
+                            <div class="skill-fill" style="--target-width: 95%;"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1251,8 +1474,12 @@
         // 2. Mở/đóng Menu Hamburger trên Mobile (Bài 3)
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileDropdownMenu');
+            const btn = document.getElementById('mobileHamburgerBtn');
             if (menu) {
                 menu.classList.toggle('active');
+            }
+            if (btn) {
+                btn.classList.toggle('is-active');
             }
         }
 
@@ -1337,6 +1564,11 @@
             applyColorPreset('blue');
         }
     </script>
+    <!-- Floating Action Button (FAB) -->
+    <a href="#contact" class="fab-contact" data-aos="zoom-in" aria-label="Liên hệ ngay">
+        <span style="display:flex; justify-content:center; align-items:center; transform:translateY(-2px)">💬</span>
+    </a>
+
     <!-- AOS JS CDN -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
