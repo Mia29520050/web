@@ -511,11 +511,20 @@
             cursor: pointer;
             min-height: 48px; /* Touch target chuẩn */
             margin-top: var(--space-3);
-            transition: opacity 0.2s;
+            
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .adaptive-cta-btn:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .adaptive-cta-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
         }
 
         /* ==========================================================================
@@ -641,11 +650,20 @@
             border-radius: var(--radius-sm);
             cursor: pointer;
             margin-top: var(--space-1);
-            transition: background-color 0.2s;
+            
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .form-submit-btn:hover {
             background-color: var(--color-primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-submit-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
         }
 
         /* Kỹ năng (Buổi 3 - HĐ 2) Flexbox wrap */
