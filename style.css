@@ -1,0 +1,1011 @@
+﻿        /* ==========================================================================
+           HỆ THỐNG DESIGN SYSTEM (CSS VARIABLES TẠI :ROOT)
+           - HĐ 1, HĐ 4 & BÀI 1, BÀI 4 ĐƯỢC TÍCH HỢP TRỰC TIẾP VÀO TRANG
+           ========================================================================== */
+        :root {
+            /* 1. Bảng mã màu Light Theme mặc định (HĐ 1 & Bài 4) */
+            --color-primary: #2563eb;          /* Màu chính */
+            --color-primary-hover: #1d4ed8;    /* Màu hover */
+            --color-primary-light: #eff6ff;    /* Màu nền nhạt */
+            --color-primary-subtle: #dbeafe;   /* Sắc thái phụ */
+            
+            --color-secondary: #4f46e5;        /* Màu phụ */
+            --color-secondary-light: #eef2ff;  
+            --color-secondary-border: #c7d2fe; 
+
+            /* 3 Mức Xám */
+            --color-gray-dark: #1f2937;        /* Mức xám đậm (Text chính) */
+            --color-gray-medium: #6b7280;      /* Mức xám vừa (Text phụ, muted) */
+            --color-gray-light: #e5e7eb;       /* Mức xám nhạt (Đường viền) */
+
+            /* Nền & Bề mặt (Surface) */
+            --color-bg: #f5f7fb;               /* Nền toàn trang */
+            --color-surface: #ffffff;          /* Nền thẻ Card / Header */
+            --color-surface-subtle: #fafafa;   /* Nền sub-item */
+            --color-header-bg: #111827;        /* Nền header/sidebar tối */
+            --color-header-text: #ffffff;      
+
+            /* 2. Spacing Tokens (Khoảng cách chuẩn hóa 8px - HĐ 4) */
+            --spacing-unit: 8px;
+            --space-1: var(--spacing-unit);                    /* 8px */
+            --space-2: calc(var(--spacing-unit) * 2);          /* 16px */
+            --space-3: calc(var(--spacing-unit) * 3);          /* 24px */
+            --space-4: calc(var(--spacing-unit) * 4);          /* 32px */
+            --space-5: calc(var(--spacing-unit) * 5);          /* 40px */
+
+            /* 3. Responsive Typography Scale Tokens (Bài 1) */
+            --font-h1: 2.25rem;    /* 36px */
+            --font-h2: 1.75rem;    /* 28px */
+            --font-h3: 1.35rem;    /* 22px */
+            --font-h4: 1.15rem;    /* 18px */
+            --font-body: 1.05rem;  /* ~17px */
+
+            /* Bo góc & Bóng */
+            --radius-sm: 8px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-pill: 9999px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* GHI ĐÈ BIẾN TOÀN TRANG KHI BẬT CHẾ ĐỘ TỐI (DARK THEME - BÀI 4) */
+        body.dark-theme {
+            --color-primary: #38bdf8;
+            --color-primary-hover: #0ea5e9;
+            --color-primary-light: rgba(56, 189, 248, 0.15);
+            --color-primary-subtle: rgba(56, 189, 248, 0.25);
+            
+            --color-secondary: #818cf8;
+            --color-secondary-light: rgba(129, 140, 248, 0.15);
+            --color-secondary-border: #4338ca;
+
+            --color-gray-dark: #f3f4f6;        /* Text sáng */
+            --color-gray-medium: #9ca3af;      /* Text mờ */
+            --color-gray-light: #334155;       /* Viền tối */
+
+            --color-bg: #0b0f19;               /* Nền tối sâu */
+            --color-surface: #1e293b;          /* Nền thẻ Card tối */
+            --color-surface-subtle: #162032;
+            --color-header-bg: #0f172a;
+            --color-header-text: #ffffff;
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* RESPONSIVE TYPOGRAPHY SCALE CHO MOBILE < 600PX (BÀI 1) */
+        @media (max-width: 600px) {
+            :root {
+                --font-h1: 1.75rem; /* 28px */
+                --font-h2: 1.4rem;  /* 22.4px */
+                --font-h3: 1.2rem;  /* 19px */
+                --font-h4: 1.05rem; /* 16.8px */
+                --font-body: 1rem;  /* 16px - Đảm bảo tối thiểu 16px trên di động */
+            }
+        }
+
+        /* Reset & Hiệu ứng chuyển màu mượt mà */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-gray-dark);
+            font-size: var(--font-body);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Typography Tags kế thừa trực tiếp thang cỡ chữ */
+        h1 { font-size: var(--font-h1); line-height: 1.25; }
+        h2 { font-size: var(--font-h2); line-height: 1.3; }
+        h3 { font-size: var(--font-h3); line-height: 1.35; }
+        h4 { font-size: var(--font-h4); line-height: 1.4; }
+        p { font-size: var(--font-body); }
+
+        /* ==========================================================================
+           BÀI 3: SMART NAVIGATION BAR TÍCH HỢP TRỰC TIẾP LÀM NAVBAR CỦA TOÀN TRANG
+           - Desktop: Menu ngang đầy đủ, nút Hamburger icon ẩn (display: none)
+           - Mobile (< 768px): Menu ngang ẩn (display: none), Hamburger icon hiện (display: flex)
+           ========================================================================== */
+        .site-navbar {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-gray-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Menu ngang trên Desktop */
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+
+        .nav-item-link {
+            text-decoration: none;
+            color: var(--color-gray-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-item-link:hover {
+            color: var(--color-primary);
+            background-color: var(--color-primary-light);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Nút chuyển Dark/Light Mode trực tiếp trên thanh điều hướng (Bài 4) */
+        .theme-toggle-btn {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary-subtle);
+            border-radius: var(--radius-pill);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px; /* Touch target chuẩn */
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--color-primary);
+            color: #ffffff;
+        }
+
+        /* Nút Hamburger icon (Mặc định ẩn trên Desktop bằng display: none) */
+        .hamburger-btn {
+            display: none; /* Ẩn trên Desktop */
+            background: none;
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            min-width: 48px;
+            min-height: 48px; /* Touch target tối thiểu 48px */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .hamburger-bar {
+            width: 24px;
+            height: 2.5px;
+            background-color: var(--color-gray-dark);
+            border-radius: 2px;
+            transition: 0.25s;
+        }
+
+        /* Mobile Dropdown Drawer (Bài 3) */
+        .mobile-dropdown-menu {
+            display: none;
+            background-color: var(--color-surface);
+            border-bottom: 2px solid var(--color-gray-light);
+            padding: var(--space-2) var(--space-3);
+            list-style: none;
+        }
+
+        .mobile-dropdown-menu.active {
+            display: block;
+            animation: dropdownSlide 0.25s ease-out;
+        }
+
+        @keyframes dropdownSlide {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-dropdown-menu li {
+            margin-bottom: 6px;
+        }
+
+        .mobile-dropdown-menu .nav-item-link {
+            display: block;
+            padding: 12px 14px;
+            min-height: 48px;
+            font-size: 1.05rem;
+        }
+
+        /* Responsive Breakpoint Navbar Mobile (< 768px) */
+        @media (max-width: 767px) {
+            .navbar-nav {
+                display: none; /* Ẩn menu ngang Desktop */
+            }
+            .hamburger-btn {
+                display: flex; /* Hiện Hamburger icon */
+            }
+        }
+
+        /* ==========================================================================
+           HĐ 2: RESPONSIVE PORTFOLIO LAYOUT (DESKTOP 2 CỘT -> MOBILE 1 CỘT)
+           ========================================================================== */
+        .portfolio-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 68px);
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "sidebar main"
+                "sidebar main"
+                "footer footer";
+            gap: var(--space-3);
+            padding: var(--space-3);
+        }
+
+        .portfolio-sidebar {
+            grid-area: sidebar;
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3);
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+            position: sticky;
+            top: 86px;
+        }
+
+        .portfolio-sidebar h3 {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-gray-medium);
+            margin-bottom: var(--space-2);
+        }
+
+        .portfolio-sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .portfolio-sidebar a {
+            text-decoration: none;
+            color: var(--color-gray-dark);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.2s;
+        }
+
+        .portfolio-sidebar a:hover {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            transform: translateX(4px);
+        }
+
+        .portfolio-main {
+            grid-area: main;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        /* Card Section Component */
+        .card-section {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-badge {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .card-section h2 {
+            margin-bottom: var(--space-2);
+            color: var(--color-gray-dark);
+        }
+
+        /* ==========================================================================
+           HĐ 1 & BÀI 4: LIVE THEME & COLOR PICKER PANEL
+           ========================================================================== */
+        .theme-editor-panel {
+            background-color: var(--color-surface-subtle);
+            border: 1px dashed var(--color-primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .presets-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: var(--space-2) 0;
+        }
+
+        .preset-btn {
+            border: 1px solid var(--color-gray-light);
+            background: var(--color-surface);
+            color: var(--color-gray-dark);
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .preset-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .picker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .picker-item {
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-sm);
+            padding: var(--space-2);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .picker-item label {
+            font-size: 0.78rem;
+            font-weight: bold;
+            color: var(--color-gray-dark);
+        }
+
+        .picker-item input[type="color"] {
+            width: 44px;
+            height: 38px;
+            border: 1px solid var(--color-gray-light);
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+
+        /* ==========================================================================
+           HĐ 3: BREAKPOINT CHALLENGE - KHU VỰC "DỊCH VỤ"
+           - Desktop (>1024px): 4 cột
+           - Tablet (768px - 1024px): 2 cột
+           - Mobile (<768px): 1 cột
+           ========================================================================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cột Desktop */
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .service-item {
+            background: var(--color-surface-subtle);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: var(--space-1);
+        }
+
+        /* ==========================================================================
+           BÀI 2: ADAPTIVE CARD LAYOUT TÍCH HỢP THỰC TẾ LÀM THẺ GIỚI THIỆU
+           - Desktop: Ảnh trái - Chữ phải (flex-direction: row)
+           - Mobile (< 768px): Ảnh trên - Chữ dưới (flex-direction: column)
+           ========================================================================== */
+        .adaptive-bio-card {
+            display: flex;
+            flex-direction: row; /* Desktop: Ảnh trái - chữ phải */
+            background: var(--color-surface);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: var(--space-2);
+        }
+
+        .adaptive-bio-img {
+            flex: 1 1 42%;
+            min-height: 280px;
+        }
+
+        .adaptive-bio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .adaptive-bio-content {
+            flex: 1 1 58%;
+            padding: var(--space-4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .adaptive-cta-btn {
+            align-self: flex-start;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 48px; /* Touch target chuẩn */
+            margin-top: var(--space-3);
+            
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .adaptive-cta-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .adaptive-cta-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ==========================================================================
+           BÀI 5: RESPONSIVE IMAGE GALLERY TÍCH HỢP THÀNH MỤC DỰ ÁN HÌNH ẢNH
+           - Dùng repeat(auto-fit, minmax(240px, 1fr)) tự co giãn số cột
+           ========================================================================== */
+        .integrated-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .gallery-card-item {
+            background: var(--color-surface-subtle);
+            border: 1px solid var(--color-gray-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .gallery-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .gallery-card-img {
+            width: 100%;
+            height: 170px;
+            overflow: hidden;
+        }
+
+        .gallery-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-card-caption {
+            padding: var(--space-2);
+        }
+
+        .gallery-card-caption h4 {
+            color: var(--color-gray-dark);
+            margin-bottom: 4px;
+        }
+
+        .gallery-card-caption p {
+            font-size: 0.88rem;
+            color: var(--color-gray-medium);
+        }
+
+        /* ==========================================================================
+           BÀI 6: MOBILE-FIRST CONTACT FORM TÍCH HỢP THÀNH FORM LIÊN HỆ CỦA TRANG
+           - Mặc định Mobile 100% width, min-height 48px, font >= 16px
+           - Desktop (>= 768px): Căn giữa, max-width 640px, Họ tên/Email 2 cột
+           ========================================================================== */
+        .site-contact-form {
+            width: 100%;
+            margin-top: var(--space-3);
+        }
+
+        .form-grid-fields {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .form-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-input-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-gray-dark);
+        }
+
+        .form-input-group input,
+        .form-input-group textarea,
+        .form-input-group select {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            font-size: 1rem; /* >= 16px tránh phóng to iOS */
+            border: 1.5px solid var(--color-gray-light);
+            border-radius: var(--radius-sm);
+            background-color: var(--color-surface);
+            color: var(--color-gray-dark);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-input-group input:focus,
+        .form-input-group textarea:focus,
+        .form-input-group select:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            min-height: 48px;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            margin-top: var(--space-1);
+            
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .form-submit-btn:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-submit-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ==========================================================================
+           LOADING SPINNER COMPONENT
+           ========================================================================== */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--color-gray-light);
+            border-top: 4px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 16px auto;
+            display: none; /* Mặc định ẩn */
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Kỹ năng (Buổi 3 - HĐ 2) Flexbox wrap */
+        .skills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .skill-badge {
+            padding: 8px 16px;
+            background-color: var(--color-secondary-light);
+            border: 1px solid var(--color-secondary-border);
+            color: var(--color-secondary);
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Flexbox Căn giữa tuyệt đối (Buổi 3 - HĐ 1) */
+        .battle-flex-center {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-secondary-light));
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-2);
+        }
+
+        .battle-center-box {
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 1px solid var(--color-gray-light);
+        }
+
+        /* Refactor Checklist (HĐ 4 & Buổi 3 - HĐ 3) */
+        .refactor-checklist {
+            display: grid;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .refactor-item {
+            padding: var(--space-2) var(--space-3);
+            border-left: 4px solid var(--color-primary);
+            background: var(--color-primary-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+        }
+
+        .site-footer {
+            grid-area: footer;
+            text-align: center;
+            padding: var(--space-4) var(--space-3);
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-gray-light);
+            color: var(--color-gray-medium);
+            font-size: 0.9rem;
+            border-radius: var(--radius-lg);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE BREAKPOINTS CHUẨN
+           - Tablet (768px - 1024px)
+           - Mobile (< 768px)
+           ========================================================================== */
+
+        /* Tablet Breakpoint (<= 1024px) */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 cột Tablet (HĐ 3) */
+            }
+        }
+
+        /* Mobile Breakpoint (< 768px) */
+        @media (max-width: 767px) {
+            /* Chuyển layout 2 cột Desktop thành 1 cột Mobile (HĐ 2) */
+            .portfolio-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "sidebar"
+                    "main"
+                    "footer";
+                padding: var(--space-2);
+            }
+
+            .portfolio-sidebar {
+                position: static;
+            }
+
+            .card-section {
+                padding: var(--space-3);
+            }
+
+            /* Adaptive Card chuyển sang dạng Dọc (Bài 2) */
+            .adaptive-bio-card {
+                flex-direction: column;
+            }
+
+            .adaptive-bio-img {
+                min-height: 200px;
+                max-height: 240px;
+            }
+
+            .adaptive-cta-btn {
+                width: 100%;
+            }
+
+            /* Dịch vụ 1 cột trên Mobile (HĐ 3) */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .battle-flex-center {
+                height: 180px;
+            }
+        }
+
+        /* Desktop Enhancement cho Form (Bài 6) */
+        @media (min-width: 768px) {
+            .site-contact-form {
+                max-width: 640px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .form-grid-fields-row {
+                display: flex;
+                gap: var(--space-2);
+            }
+
+            .form-grid-fields-row .form-input-group {
+                flex: 1;
+            }
+        }
+        /* ==========================================================================
+           WEEK 5: ANIMATIONS & PERFORMANCE (6 BÀI TẬP VỀ NHÀ)
+           ========================================================================== */
+        
+        /* 1. Hamburger Menu to "X" (CSS Transition) */
+        .hamburger-btn.is-active .hamburger-bar:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+        .hamburger-btn.is-active .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-btn.is-active .hamburger-bar:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* 2. Floating Action Button (Pulse Animation) */
+        .fab-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+            transition: transform 0.3s cubic-bezier(.25,.46,.45,.94);
+        }
+        .fab-contact:hover {
+            transform: scale(1.1);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        /* Cập nhật màu pulse khi ở dark mode */
+        body.dark-theme .fab-contact {
+            animation: pulse-dark 2s infinite;
+        }
+        @keyframes pulse-dark {
+            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+
+        /* 3. Card Flip Effect (rotateY) */
+        .flip-card {
+            background-color: transparent;
+            width: 200px;
+            height: 280px;
+            perspective: 1000px;
+            margin: var(--space-3) auto;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        .flip-card-front {
+            background-color: var(--color-surface);
+            color: var(--color-gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .flip-card-back {
+            background-color: var(--color-primary);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-2);
+        }
+
+        /* 4. Typing Effect */
+        .typing-container {
+            display: inline-block;
+            max-width: 100%;
+        }
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--color-primary);
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--color-primary); }
+        }
+
+        /* 5. Parallax Image Banner */
+        .parallax-banner {
+            background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-4);
+            overflow: hidden;
+            text-align: center;
+            padding: var(--space-3);
+        }
+        .parallax-banner h1 {
+            color: white;
+        }
+
+        /* 6. Skill Bar Animation */
+        .skill-list {
+            margin-top: var(--space-3);
+        }
+        .skill-item {
+            margin-bottom: var(--space-2);
+        }
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .skill-track {
+            background: var(--color-gray-light);
+            height: 10px;
+            border-radius: var(--radius-pill);
+            overflow: hidden;
+        }
+        .skill-fill {
+            height: 100%;
+            background: var(--color-primary);
+            width: 0; /* Bắt đầu từ 0 */
+            border-radius: var(--radius-pill);
+            /* Dùng transform scaleX mượt hơn thay vì width nếu tối ưu cực độ, 
+               nhưng width ở đây có thể chấp nhận được vì thanh này tĩnh và chạy 1 lần.
+               Hoặc ta dùng width + CSS transition. 
+               Ta sẽ dùng animation keyframe với thuộc tính width. */
+            animation: fillSkill 1.5s cubic-bezier(.25,.46,.45,.94) forwards;
+            animation-delay: 0.5s; /* Delay nhẹ để cuộn tới mới thấy */
+        }
+        @keyframes fillSkill {
+            to { width: var(--target-width); }
+        }
+
