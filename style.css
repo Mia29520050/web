@@ -1,3 +1,4 @@
+
         /* ==========================================================================
            HỆ THỐNG DESIGN SYSTEM (CSS VARIABLES TẠI :ROOT)
            - HĐ 1, HĐ 4 & BÀI 1, BÀI 4 ĐƯỢC TÍCH HỢP TRỰC TIẾP VÀO TRANG
@@ -52,25 +53,25 @@
 
         /* GHI ĐÈ BIẾN TOÀN TRANG KHI BẬT CHẾ ĐỘ TỐI (DARK THEME - BÀI 4) */
         body.dark-theme {
-            --color-primary: #38bdf8 !important;
-            --color-primary-hover: #0ea5e9 !important;
-            --color-primary-light: rgba(56, 189, 248, 0.15) !important;
-            --color-primary-subtle: rgba(56, 189, 248, 0.25) !important;
+            --color-primary: #38bdf8;
+            --color-primary-hover: #0ea5e9;
+            --color-primary-light: rgba(56, 189, 248, 0.15);
+            --color-primary-subtle: rgba(56, 189, 248, 0.25);
             
-            --color-secondary: #818cf8 !important;
-            --color-secondary-light: rgba(129, 140, 248, 0.15) !important;
-            --color-secondary-border: #4338ca !important;
+            --color-secondary: #818cf8;
+            --color-secondary-light: rgba(129, 140, 248, 0.15);
+            --color-secondary-border: #4338ca;
 
-            --color-gray-dark: #f3f4f6 !important;        /* Text sáng */
-            --color-gray-medium: #9ca3af !important;      /* Text mờ */
-            --color-gray-light: #334155 !important;       /* Viền tối */
+            --color-gray-dark: #f3f4f6;        /* Text sáng */
+            --color-gray-medium: #9ca3af;      /* Text mờ */
+            --color-gray-light: #334155;       /* Viền tối */
 
-            --color-bg: #0b0f19 !important;               /* Nền tối sâu */
-            --color-surface: #1e293b !important;          /* Nền thẻ Card tối */
-            --color-surface-subtle: #162032 !important;
-            --color-header-bg: #0f172a !important;
-            --color-header-text: #ffffff !important;
-            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+            --color-bg: #0b0f19;               /* Nền tối sâu */
+            --color-surface: #1e293b;          /* Nền thẻ Card tối */
+            --color-surface-subtle: #162032;
+            --color-header-bg: #0f172a;
+            --color-header-text: #ffffff;
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* RESPONSIVE TYPOGRAPHY SCALE CHO MOBILE < 600PX (BÀI 1) */
