@@ -828,6 +828,8 @@
             }
         }
     </style>
+    <!-- AOS CSS CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -885,7 +887,7 @@
     <div class="portfolio-wrapper">
 
         <!-- Sidebar Navigation -->
-        <aside class="portfolio-sidebar">
+        <aside class="portfolio-sidebar" data-aos="fade-right">
             <h3>Danh Mục Nội Dung</h3>
             <nav>
                 <a href="#about">1. Giới thiệu (Adaptive Card)</a>
@@ -905,7 +907,7 @@
         <main class="portfolio-main">
 
             <!-- 1. BÀI 2 TÍCH HỢP: ADAPTIVE CARD LAYOUT LÀM MỤC GIỚI THIỆU -->
-            <section class="card-section" id="about">
+            <section class="card-section" data-aos="fade-up" id="about">
                 <span class="section-badge">Bài 2 — Adaptive Card Layout</span>
                 <h2>Giới thiệu cá nhân</h2>
                 <p style="color: var(--color-gray-medium); margin-bottom: 12px;">
@@ -935,7 +937,7 @@
             </section>
 
             <!-- 2. HĐ 3: BREAKPOINT CHALLENGE KHU VỰC "DỊCH VỤ" -->
-            <section class="card-section" id="services">
+            <section class="card-section" data-aos="fade-up" id="services">
                 <span class="section-badge">HĐ 3 — Breakpoint Challenge</span>
                 <h2>Khu vực Dịch vụ (4 cột Desktop → 2 cột Tablet → 1 cột Mobile)</h2>
                 <p style="color: var(--color-gray-medium);">
@@ -970,7 +972,7 @@
             </section>
 
             <!-- 3. BÀI 5 TÍCH HỢP: RESPONSIVE IMAGE GALLERY LÀM DỰ ÁN TIÊU BIỂU -->
-            <section class="card-section" id="gallery">
+            <section class="card-section" data-aos="fade-up" id="gallery">
                 <span class="section-badge">Bài 5 — Responsive Image Gallery & Buổi 3 HĐ 2</span>
                 <h2>Bộ Sưu Tập Dự Án (CSS Grid Auto-Fit Minmax)</h2>
                 <p style="color: var(--color-gray-medium);">
@@ -1021,7 +1023,7 @@
             </section>
 
             <!-- 4. KỸ NĂNG (BUỔI 3 HĐ 2 - FLEXBOX WRAP) -->
-            <section class="card-section" id="skills">
+            <section class="card-section" data-aos="fade-up" id="skills">
                 <span class="section-badge">Buổi 3 — HĐ 2</span>
                 <h2>Kỹ năng lập trình (Flexbox Wrap)</h2>
                 <p style="color: var(--color-gray-medium);">Các thẻ kỹ năng tự động xuống dòng linh hoạt khi màn hình thu nhỏ:</p>
@@ -1039,7 +1041,7 @@
             </section>
 
             <!-- 5. HĐ 1 & BÀI 4: BẢNG MÃ MÀU THÔNG MINH (:ROOT) VÀ BỘ CHỈNH MÀU TRỰC TIẾP -->
-            <section class="card-section" id="color-system">
+            <section class="card-section" data-aos="fade-up" id="color-system">
                 <span class="section-badge">HĐ 1 — 30 phút & Bài 4</span>
                 <h2>Bảng mã màu thông minh (CSS Variables tại :root)</h2>
                 <p style="color: var(--color-gray-medium);">
@@ -1110,7 +1112,7 @@
             </section>
 
             <!-- 6. BÀI 1 TÍCH HỢP: RESPONSIVE TYPOGRAPHY SCALE -->
-            <section class="card-section" id="typography-section">
+            <section class="card-section" data-aos="fade-up" id="typography-section">
                 <span class="section-badge">Bài 1 — Responsive Typography Scale</span>
                 <h2>Thang cỡ chữ Responsive (Tự giảm khi màn hình &lt; 600px)</h2>
                 <p style="color: var(--color-gray-medium); margin-bottom: 14px;">
@@ -1129,7 +1131,7 @@
             </section>
 
             <!-- 7. BUỔI 3 HĐ 1: FLEX & GRID BATTLE -->
-            <section class="card-section" id="battle-section">
+            <section class="card-section" data-aos="fade-up" id="battle-section">
                 <span class="section-badge">Buổi 3 — HĐ 1</span>
                 <h2>Flex & Grid Battle: Căn chỉnh nâng cao</h2>
                 
@@ -1150,7 +1152,7 @@
             </section>
 
             <!-- 8. HĐ 4 & BUỔI 3 HĐ 3: DESIGN SYSTEM REFACTORING & DEBUG -->
-            <section class="card-section" id="refactor-section">
+            <section class="card-section" data-aos="fade-up" id="refactor-section">
                 <span class="section-badge">HĐ 4 — 30 phút & Buổi 3 HĐ 3</span>
                 <h2>Design System Refactoring & Checklist Hoàn Thành</h2>
                 <p style="color: var(--color-gray-medium);">
@@ -1174,7 +1176,7 @@
             </section>
 
             <!-- 9. BÀI 6 TÍCH HỢP: MOBILE-FIRST CONTACT FORM LÀM FORM LIÊN HỆ CỦA TRANG -->
-            <section class="card-section" id="contact">
+            <section class="card-section" data-aos="fade-up" id="contact">
                 <span class="section-badge">Bài 6 — Mobile-First Contact Form</span>
                 <h2>Liên hệ hợp tác (Mobile-First Form)</h2>
                 <p style="color: var(--color-gray-medium); text-align: center;">
@@ -1334,6 +1336,16 @@
             if (text) text.innerText = 'Chế độ tối';
             applyColorPreset('blue');
         }
+    </script>
+    <!-- AOS JS CDN -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Khởi tạo AOS với cấu hình cơ bản (duration 800ms)
+        AOS.init({
+            duration: 800,
+            once: true, // Animation chỉ chạy 1 lần khi scroll tới
+            offset: 100
+        });
     </script>
 </body>
 </html>
